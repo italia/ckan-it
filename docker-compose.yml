@@ -1,6 +1,6 @@
 ckan:
   container_name: ckan
-  image: 10.98.74.120:5000/daf-ckan:1.0.0
+  image: daf-ckan:1.0.0
   links:
       - db
       - solr
@@ -19,7 +19,7 @@ db:
   
 solr:
   container_name: solr
-  image: 10.98.74.120:5000/daf-ckan-solr:1.0.0
+  image: daf-ckan-solr:1.0.0
     
 redis:
   container_name: redis
