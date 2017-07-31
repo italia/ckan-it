@@ -1,6 +1,6 @@
 # CKAN Docker based infrastructure
 
-This projects provides everything you need to run ckan plus a set of plugins for supporting Italian open data.
+This project provides everything you need to run ckan plus a set of plugins for supporting Italian open data. It has been currently used only in testing environments but we think it can provide a good base for running a production service (please feel free to contribute with pull requests to this end). 
 
 ## Docker containers for ckan + plugin dcat + dcat-ap-it
 
