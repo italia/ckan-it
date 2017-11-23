@@ -18,7 +18,7 @@ RUN apt-get -q -y update && apt-get -q -y upgrade && DEBIAN_FRONTEND=noninteract
 	sudo \
 	&& apt-get -q clean
 
-RUN apt-get install -y postgresql-client
+RUN apt-get install -y postgresql-client redis-tools
 
 # Ensure that we always use UTF-8 and with US English locale
 RUN apt-get -qq update && \
@@ -98,8 +98,8 @@ ENTRYPOINT ["/ckan-entrypoint.sh"]
 # Add startup scripts
 ADD ./ckan-init.sh /
 RUN chmod +x /ckan-init.sh
-ADD ./wait-for-postgres.sh /
-RUN chmod +x /wait-for-postgres.sh
+ADD ./wait-for-services.sh /
+RUN chmod +x /wait-for-services.sh
 
 # Volumes 
 VOLUME ["/etc/ckan/default"]
