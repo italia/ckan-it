@@ -1,6 +1,6 @@
 ckan:
   container_name: ckan
-  image: daf-ckan:1.0.0
+  image: geosolutionsit/ckan-agid:devel
   links:
       - db
       - solr
@@ -19,20 +19,9 @@ db:
   
 solr:
   container_name: solr
-  image: daf-ckan-solr:1.0.0
+  image: geosolutionsit/ckan-solr:devel
     
 redis:
   container_name: redis
   image: redis:latest
-
-mongodb:
-  container_name: mongo
-  image: bitnami/mongodb:latest
-  ports:
-      - "27017:27017"
-  environment:
-      - MONGODB_ROOT_PASSWORD=mongo
-      - MONGODB_USERNAME=ckan
-      - MONGODB_PASSWORD=ckan
-      - MONGODB_DATABASE=ckan
 
