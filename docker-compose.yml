@@ -12,6 +12,7 @@ ckan:
       - DB_PORT_5432_TCP_ADDR=db
       - SOLR_PORT_8983_TCP_ADDR=solr
       - REDIS_PORT_6379_TCP_ADDR=redis
+  entrypoint: ["/wait-for-postgres.sh", "db", "ckan", "/ckan-entrypoint.sh"]
 
 db:
   container_name: db
