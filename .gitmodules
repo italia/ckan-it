@@ -4,3 +4,6 @@
 [submodule "ckan/ckanext-dcat"]
 	path = ckan/ckanext-dcat
 	url = https://github.com/ckan/ckanext-dcat.git
+[submodule "ckan/ckanext-spatial"]
+	path = ckan/ckanext-spatial
+	url = https://github.com/ckan/ckanext-spatial.git
