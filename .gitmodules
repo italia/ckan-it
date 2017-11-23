@@ -7,3 +7,6 @@
 [submodule "ckan/ckanext-spatial"]
 	path = ckan/ckanext-spatial
 	url = https://github.com/ckan/ckanext-spatial.git
+[submodule "ckan/ckanext-multilang"]
+	path = ckan/ckanext-multilang
+	url = https://github.com/geosolutions-it/ckanext-multilang.git
