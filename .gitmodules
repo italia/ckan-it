@@ -1,3 +1,6 @@
 [submodule "ckan/ckan"]
 	path = ckan/ckan
 	url = https://github.com/ckan/ckan.git
+[submodule "ckan/ckanext-dcat"]
+	path = ckan/ckanext-dcat
+	url = https://github.com/ckan/ckanext-dcat.git
