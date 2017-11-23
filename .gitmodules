@@ -13,3 +13,6 @@
 [submodule "ckan/ckanext-harvest"]
 	path = ckan/ckanext-harvest
 	url = https://github.com/ckan/ckanext-harvest.git
+[submodule "ckan/ckanext-dcatapit"]
+	path = ckan/ckanext-dcatapit
+	url = https://github.com/geosolutions-it/ckanext-dcatapit.git
