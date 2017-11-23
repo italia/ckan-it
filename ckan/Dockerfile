@@ -18,12 +18,14 @@ RUN apt-get -q -y update && apt-get -q -y upgrade && DEBIAN_FRONTEND=noninteract
 	sudo \
 	&& apt-get -q clean
 
+RUN apt-get install -y postgresql-client
 
 # Ensure that we always use UTF-8 and with US English locale
 RUN apt-get -qq update && \
     apt-get -q -y upgrade && \
     apt-get install -y sudo curl wget locales && \
     rm -rf /var/lib/apt/lists/*
+
 
 # Ensure that we always use UTF-8 and with Canadian English locale
 RUN locale-gen en_US.UTF-8
@@ -88,19 +90,20 @@ RUN pip install -e $CKAN_HOME/src/ckanext-dcatapit/
 #RUN pip install -r $CKAN_HOME/src/ckanext-dcatapit/dev-requirements.txt
 RUN . /usr/lib/ckan/default/bin/activate
 
-CMD ["paster","serve","/etc/ckan/default/ckan.ini"]
-
 # SetUp EntryPoint 
 COPY ./ckan-entrypoint.sh /
 RUN chmod +x /ckan-entrypoint.sh
 ENTRYPOINT ["/ckan-entrypoint.sh"]
 
-#TEST BASH
+# Add startup scripts
 ADD ./ckan-init.sh /
 RUN chmod +x /ckan-init.sh
+ADD ./wait-for-postgres.sh /
+RUN chmod +x /wait-for-postgres.sh
 
 # Volumes 
 VOLUME ["/etc/ckan/default"]
 VOLUME ["/var/lib/ckan"]
 EXPOSE 5000
+
 CMD ["paster","serve","/etc/ckan/default/ckan.ini"]
