@@ -18,20 +18,16 @@ RUN yum -y install gdal-python python-pip python-imaging python-virtualenv \
             python-pylons python-repoze-who python-repoze-who-plugins-sa \
             python-repoze-who-testutil python-repoze-who-friendlyform \
             python-tempita python-zope-interface policycoreutils-python
-RUN yum -y install postgresql
+RUN yum -y install postgresql wget
 
 RUN wget http://download.redis.io/redis-stable.tar.gz \
     && tar xvzf redis-stable.tar.gz \
-    && poshd redis-stable \
+    && pushd redis-stable \
     && make \
     && cp src/redis-cli /usr/local/bin/ \
     && chmod 755 /usr/local/bin/redis-cli \
     && popd \
     && rm -rf ./redis-stable*
-
-# add 'ckan' user
-RUN useradd -m -s /sbin/nologin -d "${CKAN_HOME}" -c "CKAN User" ckan
-
 
 # upgrade python pip
 RUN pip install --upgrade pip
@@ -40,6 +36,9 @@ RUN pip install --upgrade pip
 RUN mkdir -p $CKAN_HOME
 RUN mkdir -p $CKAN_CONFIG 
 RUN mkdir -p $CKAN_STORAGE_PATH
+
+# add 'ckan' user
+RUN useradd -m -s /sbin/nologin -d "${CKAN_HOME}" -c "CKAN User" ckan
 
 # add CKAN source code
 RUN mkdir -p $CKAN_HOME/src/ckan/ 
