@@ -63,27 +63,23 @@ RUN chmod 777 $CKAN_CONFIG/ckan.ini
 RUN ln -s ${CKAN_HOME}/src/ckan/ckan/config/who.ini ${CKAN_CONFIG}/who.ini
 
 # Install ckanext-harvest
-#RUN mkdir $CKAN_HOME/src/ckanext-harvest/
-#ADD ./ckanext-harvest/ $CKAN_HOME/src/ckanext-harvest/
-#RUN . /usr/lib/ckan/default/bin/activate  
-#RUN pip install -e $CKAN_HOME/src/ckanext-harvest/ 
-#RUN pip install -r $CKAN_HOME/src/ckanext-harvest/pip-requirements.txt 
-#RUN pip install -r $CKAN_HOME/src/ckanext-harvest/dev-requirements.txt 
-#
-## Install ckanext-dcat
-#RUN mkdir $CKAN_HOME/src/ckanext-dcat/
-#ADD ./ckanext-dcat/ $CKAN_HOME/src/ckanext-dcat/
-#RUN . /usr/lib/ckan/default/bin/activate 
-#RUN pip install -e $CKAN_HOME/src/ckanext-dcat/ 
-#RUN pip install -r $CKAN_HOME/src/ckanext-dcat/requirements.txt
-#
-## Install ckanext-dcatapit
-#RUN mkdir $CKAN_HOME/src/ckanext-dcatapit/
-#ADD ./ckanext-dcatapit/ $CKAN_HOME/src/ckanext-dcatapit/
-#RUN . /usr/lib/ckan/default/bin/activate 
-#RUN pip install -e $CKAN_HOME/src/ckanext-dcatapit/ 
+RUN mkdir $CKAN_HOME/src/ckanext-harvest/
+ADD ./ckanext-harvest/ $CKAN_HOME/src/ckanext-harvest/
+RUN pip install -e $CKAN_HOME/src/ckanext-harvest/ 
+RUN pip install -r $CKAN_HOME/src/ckanext-harvest/pip-requirements.txt 
+RUN pip install -r $CKAN_HOME/src/ckanext-harvest/dev-requirements.txt 
 
-#RUN pip install -r $CKAN_HOME/src/ckanext-dcatapit/dev-requirements.txt
+## Install ckanext-dcat
+RUN mkdir $CKAN_HOME/src/ckanext-dcat/
+ADD ./ckanext-dcat/ $CKAN_HOME/src/ckanext-dcat/
+RUN pip install -e $CKAN_HOME/src/ckanext-dcat/ 
+RUN pip install -r $CKAN_HOME/src/ckanext-dcat/requirements.txt
+
+## Install ckanext-dcatapit
+RUN mkdir $CKAN_HOME/src/ckanext-dcatapit/
+ADD ./ckanext-dcatapit/ $CKAN_HOME/src/ckanext-dcatapit/
+RUN pip install -e $CKAN_HOME/src/ckanext-dcatapit/ 
+RUN pip install -r $CKAN_HOME/src/ckanext-dcatapit/dev-requirements.txt
 
 RUN chown ckan:ckan "${CKAN_HOME}" -R \
     && chown ckan:ckan "${CKAN_CONFIG}" -R \
