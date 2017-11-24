@@ -1,6 +1,6 @@
 ckan:
   container_name: ckan
-  image: geosolutionsit/ckan-agid:devel
+  image: geosolutionsit/dati-ckan-docker:ckan-agid-devel
   links:
       - db
       - solr
@@ -21,7 +21,7 @@ db:
   
 solr:
   container_name: solr
-  image: geosolutionsit/ckan-solr:devel
+  image: geosolutionsit/dati-ckan-docker:solr-agid-devel
     
 redis:
   container_name: redis
