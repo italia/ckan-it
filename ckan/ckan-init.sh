@@ -5,6 +5,10 @@
 paster --plugin=ckan user add ckanadmin email=admin@mail.com password=ckanpassword --config /etc/ckan/default/ckan.ini
 paster --plugin=ckan sysadmin add ckanadmin --config /etc/ckan/default/ckan.ini
 
+# Setup Datastore
+paster --plugin=ckan datastore set-permissions -c "/etc/ckan/default/ckan.ini" > "./set_permissions.sql"
+psql  -h db -p 5432 -U postgres -f "/usr/lib/ckan/set_permissions.sql"
+
 # Vocabulary Load
 paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/mdr/resource/authority/language/skos/languages-skos.rdf --name languages --config /etc/ckan/default/ckan.ini
 paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/mdr/resource/authority/data-theme/skos/data-theme-skos.rdf --name eu_themes --config /etc/ckan/default/ckan.ini
