@@ -81,6 +81,12 @@ ADD ./ckanext-dcatapit/ $CKAN_HOME/src/ckanext-dcatapit/
 RUN pip install -e $CKAN_HOME/src/ckanext-dcatapit/ 
 RUN pip install -r $CKAN_HOME/src/ckanext-dcatapit/dev-requirements.txt
 
+## Install ckanext-spatial
+RUN mkdir $CKAN_HOME/src/ckanext-spatial/
+ADD ./ckanext-spatial/ $CKAN_HOME/src/ckanext-spatial/
+RUN pip install -e $CKAN_HOME/src/ckanext-spatial/ 
+RUN pip install -r $CKAN_HOME/src/ckanext-spatial/pip-requirements.txt
+
 RUN chown ckan:ckan "${CKAN_HOME}" -R \
     && chown ckan:ckan "${CKAN_CONFIG}" -R \
     && chown ckan:ckan "${CKAN_STORAGE_PATH}" -R
