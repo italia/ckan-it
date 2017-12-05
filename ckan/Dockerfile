@@ -89,7 +89,7 @@ RUN pip install -r $CKAN_HOME/src/ckanext-spatial/pip-requirements.txt
 
 ## Install ckanext-spatial
 RUN mkdir $CKAN_HOME/src/ckanext-multilang/
-ADD ./ckanext-spatial/ $CKAN_HOME/src/ckanext-multilang/
+ADD ./ckanext-multilang/ $CKAN_HOME/src/ckanext-multilang/
 RUN pip install -e $CKAN_HOME/src/ckanext-multilang/ 
 RUN pip install -r $CKAN_HOME/src/ckanext-multilang/pip-requirements.txt
 
