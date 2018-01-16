@@ -158,6 +158,7 @@ schema. In this case the version should be set to the next CKAN version number.
     <dynamicField name="res_extras_*" type="text" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="vocab_*" type="string" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="*" type="string" indexed="true"  stored="false"/>
+    <dynamicField name="package_multilang_localized_*" type="text" indexed="true" stored="true" multiValued="false"/>
 </fields>
 
 <uniqueKey>index_id</uniqueKey>
@@ -184,5 +185,6 @@ schema. In this case the version should be set to the next CKAN version number.
 <copyField source="res_description" dest="text"/>
 <copyField source="maintainer" dest="text"/>
 <copyField source="author" dest="text"/>
+<copyField source="package_multilang_localized_*" dest="text"/>
 
 </schema>
