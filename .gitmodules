@@ -16,3 +16,6 @@
 [submodule "ckan/ckanext-dcatapit"]
 	path = ckan/ckanext-dcatapit
 	url = https://github.com/geosolutions-it/ckanext-dcatapit.git
+[submodule "datapusher/datapusher"]
+	path = datapusher/datapusher
+	url = https://github.com/ckan/datapusher.git
