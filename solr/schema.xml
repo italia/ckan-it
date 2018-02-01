@@ -151,7 +151,13 @@ schema. In this case the version should be set to the next CKAN version number.
     <field name="validated_data_dict" type="string" indexed="false" stored="true" />
 
     <field name="_version_" type="string" indexed="true" stored="true"/>
+    <field name="dcat_theme" type="string" indexed="true" stored="false" multiValued="true"/>
+    <field name="dcat_subtheme" type="string" indexed="true" stored="false" multiValued="true"/>
 
+    <dynamicField name="dcat_subtheme_*" type="string" indexed="true" stored="false" multiValued="true"/>
+    <dynamicField name="organization_region_*" type="string" indexed="true" stored="false" multiValued="false"/>
+    <dynamicField name="resource_license_*" type="string" indexed="true" stored="false" multiValued="true"/>
+    <field name="resource_license" type="string" indexed="true" stored="false" multiValued="true"/>
     <dynamicField name="*_date" type="date" indexed="true" stored="true" multiValued="false"/>
 
     <dynamicField name="extras_*" type="text" indexed="true" stored="true" multiValued="false"/>
