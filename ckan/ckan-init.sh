@@ -14,7 +14,7 @@ paster --plugin=ckan datastore set-permissions -c "$CKAN_INI_PATH" > "/tmp/set_p
 psql  -h db -p 5432 -U postgres -f "/tmp/set_permissions.sql"
 
 # Setup Multilang
-paster --plugin=ckanext-multilang multilangdb initdb --config=/etc/ckan/default/ckan.ini
+paster --plugin=ckanext-multilang multilangdb initdb --config="$CKAN_INI_PATH"
 
 # Vocabulary Load
 paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/mdr/resource/authority/language/skos/languages-skos.rdf --name languages --config "$CKAN_INI_PATH"
