@@ -24,7 +24,7 @@
 <!-- We update the version when there is a backward-incompatible change to this
 schema. In this case the version should be set to the next CKAN version number.
 (x.y but not x.y.z since it needs to be a float) -->
-<schema name="ckan" version="2.7">
+<schema name="ckan" version="2.3">
 
 <types>
     <fieldType name="string" class="solr.StrField" sortMissingLast="true" omitNorms="true"/>
@@ -112,7 +112,6 @@ schema. In this case the version should be set to the next CKAN version number.
     <field name="organization" type="string" indexed="true" stored="true" multiValued="false"/>
 
     <field name="capacity" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="permission_labels" type="text" indexed="true" stored="false" multiValued="true"/>
 
     <field name="res_name" type="textgen" indexed="true" stored="true" multiValued="true" />
     <field name="res_description" type="textgen" indexed="true" stored="true" multiValued="true"/>
@@ -151,19 +150,30 @@ schema. In this case the version should be set to the next CKAN version number.
     <field name="validated_data_dict" type="string" indexed="false" stored="true" />
 
     <field name="_version_" type="string" indexed="true" stored="true"/>
-    <field name="dcat_theme" type="string" indexed="true" stored="false" multiValued="true"/>
-    <field name="dcat_subtheme" type="string" indexed="true" stored="false" multiValued="true"/>
 
-    <dynamicField name="dcat_subtheme_*" type="string" indexed="true" stored="false" multiValued="true"/>
-    <dynamicField name="organization_region_*" type="string" indexed="true" stored="false" multiValued="false"/>
-    <dynamicField name="resource_license_*" type="string" indexed="true" stored="false" multiValued="true"/>
-    <field name="resource_license" type="string" indexed="true" stored="false" multiValued="true"/>
+   <!-- SPATIAL --> 
+   <field name="bbox_area" type="float" indexed="true" stored="true" />
+   <field name="maxx" type="float" indexed="true" stored="true" />
+   <field name="maxy" type="float" indexed="true" stored="true" />
+   <field name="minx" type="float" indexed="true" stored="true" />
+   <field name="miny" type="float" indexed="true" stored="true" />
+
+   <!-- DCATAPIT -->
+   <field name="dcat_theme" type="string" indexed="true" stored="false" multiValued="true"/>
+
+<field name="dcat_subtheme" type="string" indexed="true" stored="false" multiValued="true"/>
+<dynamicField name="dcat_subtheme_*" type="string" indexed="true" stored="false" multiValued="true"/>
+<dynamicField name="organization_region_*" type="string" indexed="true" stored="false" multiValued="false"/>
+<dynamicField name="resource_license_*" type="string" indexed="true" stored="false" multiValued="true"/>
+<field name="resource_license" type="string" indexed="true" stored="false" multiValued="true"/>
+
     <dynamicField name="*_date" type="date" indexed="true" stored="true" multiValued="false"/>
 
     <dynamicField name="extras_*" type="text" indexed="true" stored="true" multiValued="false"/>
     <dynamicField name="res_extras_*" type="text" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="vocab_*" type="string" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="*" type="string" indexed="true"  stored="false"/>
+
     <dynamicField name="package_multilang_localized_*" type="text" indexed="true" stored="true" multiValued="false"/>
 </fields>
 
@@ -191,6 +201,7 @@ schema. In this case the version should be set to the next CKAN version number.
 <copyField source="res_description" dest="text"/>
 <copyField source="maintainer" dest="text"/>
 <copyField source="author" dest="text"/>
+
 <copyField source="package_multilang_localized_*" dest="text"/>
 
 </schema>
