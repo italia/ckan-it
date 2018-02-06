@@ -22,6 +22,10 @@ paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europ
 paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/mdr/resource/authority/place/skos/places-skos.rdf --name places --config "$CKAN_INI_PATH"
 paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/mdr/resource/authority/frequency/skos/frequencies-skos.rdf --name frequencies --config "$CKAN_INI_PATH"
 paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/mdr/resource/authority/file-type/skos/filetypes-skos.rdf --name filetype --config "$CKAN_INI_PATH"
+
+wget "https://raw.githubusercontent.com/italia/daf-ontologie-vocabolari-controllati/master/VocabolariControllati/ClassificazioneTerritorio/Istat-Classificazione-08-Territorio.rdf" -O "/tmp/Istat-Classificazione-08-Territorio.rdf"
+paster --plugin=ckanext-dcatapit vocabulary load --filename "/tmp/Istat-Classificazione-08-Territorio.rdf" --name regions --config "$CKAN_INI_PATH"
+
 wget "https://raw.githubusercontent.com/italia/daf-ontologie-vocabolari-controllati/master/VocabolariControllati/Licenze/Licenze.rdf" \
 -O "/tmp/Licenze.rdf"
 paster --plugin=ckanext-dcatapit vocabulary load --filename "/tmp/Licenze.rdf.1" --name licenses --config "$CKAN_INI_PATH"
