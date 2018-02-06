@@ -28,6 +28,6 @@ paster --plugin=ckanext-dcatapit vocabulary load --filename "/tmp/Istat-Classifi
 
 wget "https://raw.githubusercontent.com/italia/daf-ontologie-vocabolari-controllati/master/VocabolariControllati/Licenze/Licenze.rdf" \
 -O "/tmp/Licenze.rdf"
-paster --plugin=ckanext-dcatapit vocabulary load --filename "/tmp/Licenze.rdf.1" --name licenses --config "$CKAN_INI_PATH"
+paster --plugin=ckanext-dcatapit vocabulary load --filename "/tmp/Licenze.rdf" --name licenses --config "$CKAN_INI_PATH"
 paster --plugin=ckanext-dcatapit vocabulary load --filename "$EUROVOC_TO_THEMES_MAPPING_FILE" --name subthemes --config "$CKAN_INI_PATH" "$PATH_TO_EUROVOC"
 
