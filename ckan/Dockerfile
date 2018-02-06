@@ -48,7 +48,7 @@ ADD ./ckan $CKAN_HOME/src/ckan/
 RUN pip install pytz diagnostics
 
 # install requirements
-RUN pip install -r "setuptools==36.1"
+RUN pip install "setuptools==36.1"
 RUN pip install -r "${CKAN_HOME}/src/ckan/requirements.txt"
 
 # install CKAN
