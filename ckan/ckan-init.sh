@@ -2,7 +2,7 @@
 
 EUROVOC_TO_THEMES_MAPPING_FILE="$CKAN_HOME/src/ckanext-dcatapit/examples/eurovoc_mapping.rdf"
 PATH_TO_EUROVOC="$CKAN_HOME/src/ckanext-dcatapit/examples/eurovoc.rdf"
-CKAN_INI_PAT="/etc/ckan/default/ckan.ini"
+CKAN_INI_PATH="/etc/ckan/default/ckan.ini"
 
 # Add user "ckanadmin" with password "ckanpassword". Add user "ckanadmin" to sysadmin group. Change password at first login.
 #paster --plugin=ckan user remove ckanadmin --config /etc/ckan/default/ckan.ini
@@ -22,7 +22,8 @@ paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europ
 paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/mdr/resource/authority/place/skos/places-skos.rdf --name places --config "$CKAN_INI_PATH"
 paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/mdr/resource/authority/frequency/skos/frequencies-skos.rdf --name frequencies --config "$CKAN_INI_PATH"
 paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/mdr/resource/authority/file-type/skos/filetypes-skos.rdf --name filetype --config "$CKAN_INI_PATH"
-wget https://raw.githubusercontent.com/italia/daf-ontologie-vocabolari-controllati/master/VocabolariControllati/Licenze/Licenze.rdf
-paster --plugin=ckanext-dcatapit vocabulary load --filename Licenze.rdf.1 --name licenses --config "$CKAN_INI_PATH"
+wget "https://raw.githubusercontent.com/italia/daf-ontologie-vocabolari-controllati/master/VocabolariControllati/Licenze/Licenze.rdf" \
+-O "/tmp/Licenze.rdf"
+paster --plugin=ckanext-dcatapit vocabulary load --filename "/tmp/Licenze.rdf.1" --name licenses --config "$CKAN_INI_PATH"
 paster --plugin=ckanext-dcatapit vocabulary load --filename "$EUROVOC_TO_THEMES_MAPPING_FILE" --name subthemes --config "$CKAN_INI_PATH" "$PATH_TO_EUROVOC"
 
