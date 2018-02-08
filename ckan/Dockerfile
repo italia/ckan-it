@@ -76,8 +76,16 @@ RUN pip install -e $CKAN_HOME/src/ckanext-dcat/
 RUN pip install -r $CKAN_HOME/src/ckanext-dcat/requirements.txt
 
 ## Install ckanext-dcatapit
-RUN mkdir $CKAN_HOME/src/ckanext-dcatapit/
-ADD ./ckanext-dcatapit/ $CKAN_HOME/src/ckanext-dcatapit/
+# RUN mkdir $CKAN_HOME/src/ckanext-dcatapit/
+# ADD ./ckanext-dcatapit/ $CKAN_HOME/src/ckanext-dcatapit/
+
+# Checkout a different version:
+#    cd ckanext-dcatapit
+#    git checkout YOUR_PREFERRED_TAG_OR_BRANCH 
+#    cd ..
+RUN pushd $CKAN_HOME/src \
+    && git clone "git@github.com:geosolutions-it/ckanext-dcatapit.git" \
+    && popd
 RUN pip install -e $CKAN_HOME/src/ckanext-dcatapit/ 
 RUN pip install -r $CKAN_HOME/src/ckanext-dcatapit/dev-requirements.txt
 
