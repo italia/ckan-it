@@ -1,0 +1,12 @@
+         {
+            "title" : "MIBACT",
+            "name" : "mibact",
+
+            "type" : "harvest",
+            "source_type" : "dcat_rdf",
+
+            "url" : "http://dati.beniculturali.it/sparql?default-graph-uri=&query=construct+%7B%3Fs+%3Fp+%3Fo%7Dwhere%7Bgraph+%3Chttp%3A%2F%2Fdati.beniculturali.it%2Fdescrizione_dataset%3E+%7B%3Fs+%3Fp+%3Fo%7D%7D&format=application%2Frdf%2Bxml",
+            "frequency" : "MANUAL",    
+
+            "owner_org" : "default"
+         }
