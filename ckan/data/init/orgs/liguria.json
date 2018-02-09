@@ -1,0 +1,17 @@
+{
+         "title" : "Regione Liguria",
+         "description" : "",
+
+         "name" : "regione-liguria",
+
+         "site" : "http://www.regione.liguria.it/",
+         "email" : "liguriainforma@regione.liguria.it",
+         "identifier" : "r_liguria",
+
+         "telephone" : "",
+
+         "region" : "liguria",
+
+         "image_url" : "",
+         "image_display_url" : ""
+}
