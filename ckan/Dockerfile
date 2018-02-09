@@ -90,8 +90,11 @@ RUN pip install -e $CKAN_HOME/src/ckanext-dcatapit/
 RUN pip install -r $CKAN_HOME/src/ckanext-dcatapit/dev-requirements.txt
 
 ## Install ckanext-spatial
-RUN mkdir $CKAN_HOME/src/ckanext-spatial/
-ADD ./ckanext-spatial/ $CKAN_HOME/src/ckanext-spatial/
+# RUN mkdir $CKAN_HOME/src/ckanext-spatial/
+# ADD ./ckanext-spatial/ $CKAN_HOME/src/ckanext-spatial/
+RUN pushd $CKAN_HOME/src \
+    && git clone "https://github.com/geosolutions-it/ckanext-spatial/tree/188_clean_tags" \
+    && popd
 RUN pip install -e $CKAN_HOME/src/ckanext-spatial/ 
 RUN pip install -r $CKAN_HOME/src/ckanext-spatial/pip-requirements.txt
 
