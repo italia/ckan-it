@@ -4,6 +4,7 @@ FROM centos:7
 # set vars
 ENV CKAN_HOME /usr/lib/ckan/default
 ENV CKAN_CONFIG /etc/ckan/default
+ENV CKAN_LOG_DIR /var/log/ckan
 ENV CKAN_STORAGE_PATH /var/lib/ckan
 ENV CKAN_SITE_URL http://localhost:5000
 
@@ -34,7 +35,8 @@ RUN pip install --upgrade pip
 
 # setup ckan Directory
 RUN mkdir -p $CKAN_HOME
-RUN mkdir -p $CKAN_CONFIG 
+RUN mkdir -p $CKAN_LOG_DIR
+RUN mkdir -p $CKAN_CONFIG
 RUN mkdir -p $CKAN_STORAGE_PATH
 
 # add 'ckan' user
@@ -115,6 +117,7 @@ RUN chown ckan:ckan "${CKAN_HOME}" -R \
 
 RUN chmod 755 "${CKAN_HOME}" -R \
     && chmod 755 "${CKAN_CONFIG}" -R \
+    && chmod 755 "${CKAN_LOG_DIR}" -R \
     && chmod 755 "${CKAN_STORAGE_PATH}" -R
 
 # SetUp EntryPoint 
