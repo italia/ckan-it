@@ -110,7 +110,7 @@ paster --plugin=ckanext-harvest harvester initdb -c "${CKAN_CONFIG}/ckan.ini"
 paster --plugin=ckanext-dcatapit vocabulary initdb -c "${CKAN_CONFIG}/ckan.ini"
 
 # Harvesting consumer
-nohup harvest_fetch_and_gather.sh gather_consumer &
-nohup harvest_fetch_and_gather.sh fetch_consumer  &
+nohup /harvest_fetch_and_gather.sh gather_consumer &
+nohup /harvest_fetch_and_gather.sh fetch_consumer  &
 
 exec "$@"
