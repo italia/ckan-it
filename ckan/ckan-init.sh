@@ -31,3 +31,6 @@ wget "https://raw.githubusercontent.com/italia/daf-ontologie-vocabolari-controll
 paster --plugin=ckanext-dcatapit vocabulary load --filename "/tmp/Licenze.rdf" --name licenses --config "$CKAN_INI_PATH"
 paster --plugin=ckanext-dcatapit vocabulary load --filename "$EUROVOC_TO_THEMES_MAPPING_FILE" --name subthemes --config "$CKAN_INI_PATH" "$PATH_TO_EUROVOC"
 
+
+APIKEY=$(psql -q -t -h db -U postgres -d ckan -c "select apikey from public.user where name='ckanadmin';")
+${CKAN_HOME}/data/init/create.sh $APIKEY localhost:5000

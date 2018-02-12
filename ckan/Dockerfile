@@ -65,6 +65,10 @@ RUN chmod 777 $CKAN_CONFIG/ckan.ini
 ADD ./data/config/theme_to_group.ini $CKAN_CONFIG
 RUN chmod 666 $CKAN_CONFIG/theme_to_group.ini
 
+# Copy various data and initialization files
+RUN mkdir $CKAN_HOME/data/
+ADD ./data $CKAN_HOME/data/
+
 # Link to who.ini
 RUN ln -s ${CKAN_HOME}/src/ckan/ckan/config/who.ini ${CKAN_CONFIG}/who.ini
 
