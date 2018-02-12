@@ -113,6 +113,7 @@ RUN pip install -e $CKAN_HOME/src/ckanext-multilang/
 
 RUN chown ckan:ckan "${CKAN_HOME}" -R \
     && chown ckan:ckan "${CKAN_CONFIG}" -R \
+    && chown ckan:ckan "${CKAN_LOG_DIR}" -R \
     && chown ckan:ckan "${CKAN_STORAGE_PATH}" -R
 
 RUN chmod 755 "${CKAN_HOME}" -R \
