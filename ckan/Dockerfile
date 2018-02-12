@@ -141,6 +141,7 @@ RUN chmod +x /harvest_fetch_and_gather.sh
 # Volumes 
 VOLUME ["/etc/ckan/default"]
 VOLUME ["/var/lib/ckan"]
+VOLUME ["/var/log/ckan"]
 
 USER ckan
 EXPOSE 5000
