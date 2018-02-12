@@ -109,6 +109,18 @@ paster --plugin=ckanext-harvest harvester initdb -c "${CKAN_CONFIG}/ckan.ini"
 # Inizialize DCAT-AP_IT
 paster --plugin=ckanext-dcatapit vocabulary initdb -c "${CKAN_CONFIG}/ckan.ini"
 
+# Add user "ckanadmin" with password "ckanpassword". Add user "ckanadmin" to sysadmin group. Change password at first login.
+#paster --plugin=ckan user remove ckanadmin --config /etc/ckan/default/ckan.ini
+paster --plugin=ckan user add ckanadmin email=admin@mail.com password=ckanpassword --config "$CKAN_INI_PATH"
+paster --plugin=ckan sysadmin add ckanadmin --config "$CKAN_INI_PATH"
+
+# Setup Datastore
+# paster --plugin=ckan datastore set-permissions -c "$CKAN_INI_PATH" > "/tmp/set_permissions.sql"
+# psql  -h db -p 5432 -U postgres -f "/tmp/set_permissions.sql"
+
+# Setup Multilang
+paster --plugin=ckanext-multilang multilangdb initdb --config="$CKAN_INI_PATH"
+
 # Harvesting consumer
 nohup /harvest_fetch_and_gather.sh gather_consumer &
 nohup /harvest_fetch_and_gather.sh fetch_consumer  &
