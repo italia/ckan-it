@@ -137,6 +137,8 @@ ADD ./wait-for-services.sh /
 RUN chmod +x /wait-for-services.sh
 ADD ./harvest_fetch_and_gather.sh /
 RUN chmod +x /harvest_fetch_and_gather.sh
+ADD ./periodic-harvest.sh /
+RUN chmod +x /periodic-harvest.sh
 
 # Volumes 
 VOLUME ["/etc/ckan/default"]
