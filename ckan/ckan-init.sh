@@ -4,6 +4,11 @@ EUROVOC_TO_THEMES_MAPPING_FILE="$CKAN_HOME/src/ckanext-dcatapit/examples/eurovoc
 PATH_TO_EUROVOC="$CKAN_HOME/src/ckanext-dcatapit/examples/eurovoc.rdf"
 CKAN_INI_PATH="/etc/ckan/default/ckan.ini"
 
+# Add user "ckanadmin" with password "ckanpassword". Add user "ckanadmin" to sysadmin group. Change password at first login.
+#paster --plugin=ckan user remove ckanadmin --config /etc/ckan/default/ckan.ini
+paster --plugin=ckan user add ckanadmin email=admin@mail.com password=ckanpassword --config "$CKAN_INI_PATH"
+paster --plugin=ckan sysadmin add ckanadmin --config "$CKAN_INI_PATH"
+
 # Vocabulary Load
 paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/mdr/resource/authority/language/skos/languages-skos.rdf --name languages --config "$CKAN_INI_PATH"
 paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/mdr/resource/authority/data-theme/skos/data-theme-skos.rdf --name eu_themes --config "$CKAN_INI_PATH"
