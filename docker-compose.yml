@@ -1,38 +1,44 @@
-ckan:
-  container_name: ckan
-  image: daf-ckan:1.0.0
-  links:
-      - db
-      - solr
-      - redis
-  ports:
-      - "5000:5000"
-  environment:
-      - CKAN_SITE_URL=http://localhost:5000
-      - DB_PORT_5432_TCP_ADDR=db
-      - SOLR_PORT_8983_TCP_ADDR=solr
-      - REDIS_PORT_6379_TCP_ADDR=redis
-
-db:
-  container_name: db
-  image: ckan/postgresql:latest
-  
-solr:
-  container_name: solr
-  image: daf-ckan-solr:1.0.0
-    
-redis:
-  container_name: redis
-  image: redis:latest
-
-mongodb:
-  container_name: mongo
-  image: bitnami/mongodb:latest
-  ports:
-      - "27017:27017"
-  environment:
-      - MONGODB_ROOT_PASSWORD=mongo
-      - MONGODB_USERNAME=ckan
-      - MONGODB_PASSWORD=ckan
-      - MONGODB_DATABASE=ckan
+version: '2'
+services:
+  solr:
+    image: geosolutionsit/dati-ckan-docker:solr-agid-devel
+    stdin_open: true
+    tty: true
+    labels:
+      name: solr-agid-devel
+      io.rancher.container.pull_image: always
+  ckan:
+    image: geosolutionsit/dati-ckan-docker:ckan-agid-devel
+    environment:
+      CKAN_SITE_URL: http://localhost:5000
+      CKAN_INI_PATH: /etc/ckan/default/ckan.ini
+      CKAN_SQLALCHEMY_URL: postgresql://ckan:ckan@db:5432/
+      CKAN_REDIS_URL: redis://redis:6379/
+      CKAN_SOLR_URL: http://solr:8983/solr/ckan
+    stdin_open: true
+    entrypoint:
+    - /wait-for-services.sh
+    - /ckan-entrypoint.sh
+    tty: true
+    links:
+    - db:db
+    - redis:redis
+    - solr:solr
+    ports:
+    - 5000:5000/tcp
+    command:
+    - paster
+    - serve
+    - /etc/ckan/default/ckan.ini
+    labels:
+      name: ckan-agid-devel
+      io.rancher.container.pull_image: always
+  redis:
+    image: redis:latest
+    stdin_open: true
+    tty: true
+  db:
+    image: geosolutionsit/dati-ckan-docker:postgresql-10.1
+    stdin_open: true
+    tty: true
 

@@ -16,5 +16,5 @@
 # limitations under the License.
 #
 
-docker build -t daf-ckan-solr:1.0.0 ./solr
-docker build -t daf-ckan:1.0.0 ./ckan
+docker build -t geosolutionsit/dati-ckan-docker:solr-agid-devel ./solr
+docker build -t geosolutionsit/dati-ckan-docker:ckan-agid-devel ./ckan

@@ -151,12 +151,30 @@ schema. In this case the version should be set to the next CKAN version number.
 
     <field name="_version_" type="string" indexed="true" stored="true"/>
 
+   <!-- SPATIAL --> 
+   <field name="bbox_area" type="float" indexed="true" stored="true" />
+   <field name="maxx" type="float" indexed="true" stored="true" />
+   <field name="maxy" type="float" indexed="true" stored="true" />
+   <field name="minx" type="float" indexed="true" stored="true" />
+   <field name="miny" type="float" indexed="true" stored="true" />
+
+   <!-- DCATAPIT -->
+   <field name="dcat_theme" type="string" indexed="true" stored="false" multiValued="true"/>
+
+<field name="dcat_subtheme" type="string" indexed="true" stored="false" multiValued="true"/>
+<dynamicField name="dcat_subtheme_*" type="string" indexed="true" stored="false" multiValued="true"/>
+<dynamicField name="organization_region_*" type="string" indexed="true" stored="false" multiValued="false"/>
+<dynamicField name="resource_license_*" type="string" indexed="true" stored="false" multiValued="true"/>
+<field name="resource_license" type="string" indexed="true" stored="false" multiValued="true"/>
+
     <dynamicField name="*_date" type="date" indexed="true" stored="true" multiValued="false"/>
 
     <dynamicField name="extras_*" type="text" indexed="true" stored="true" multiValued="false"/>
     <dynamicField name="res_extras_*" type="text" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="vocab_*" type="string" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="*" type="string" indexed="true"  stored="false"/>
+
+    <dynamicField name="package_multilang_localized_*" type="text" indexed="true" stored="true" multiValued="false"/>
 </fields>
 
 <uniqueKey>index_id</uniqueKey>
@@ -183,5 +201,7 @@ schema. In this case the version should be set to the next CKAN version number.
 <copyField source="res_description" dest="text"/>
 <copyField source="maintainer" dest="text"/>
 <copyField source="author" dest="text"/>
+
+<copyField source="package_multilang_localized_*" dest="text"/>
 
 </schema>

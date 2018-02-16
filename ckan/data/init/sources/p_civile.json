@@ -1,0 +1,12 @@
+         {
+            "title" : "Protezione Civile",
+            "name" : "protezione-civile",
+
+            "type" : "harvest",
+            "source_type" : "dcat_rdf",
+
+            "url" : "http://dati.protezionecivile.it/geoportalOD/GetCatalogXSL",            
+
+            "frequency" : "MANUAL",
+            "owner_org" : "default"
+         }

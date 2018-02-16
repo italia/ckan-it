@@ -1,0 +1,21 @@
+[submodule "ckan/ckan"]
+	path = ckan/ckan
+	url = https://github.com/ckan/ckan.git
+[submodule "ckan/ckanext-dcat"]
+	path = ckan/ckanext-dcat
+	url = https://github.com/ckan/ckanext-dcat.git
+[submodule "ckan/ckanext-spatial"]
+	path = ckan/ckanext-spatial
+	url = https://github.com/ckan/ckanext-spatial.git
+[submodule "ckan/ckanext-multilang"]
+	path = ckan/ckanext-multilang
+	url = https://github.com/geosolutions-it/ckanext-multilang.git
+[submodule "ckan/ckanext-harvest"]
+	path = ckan/ckanext-harvest
+	url = https://github.com/ckan/ckanext-harvest.git
+[submodule "ckan/ckanext-dcatapit"]
+	path = ckan/ckanext-dcatapit
+	url = https://github.com/geosolutions-it/ckanext-dcatapit.git
+[submodule "datapusher/datapusher"]
+	path = datapusher/datapusher
+	url = https://github.com/ckan/datapusher.git

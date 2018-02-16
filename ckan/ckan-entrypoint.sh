@@ -109,8 +109,15 @@ paster --plugin=ckanext-harvest harvester initdb -c "${CKAN_CONFIG}/ckan.ini"
 # Inizialize DCAT-AP_IT
 paster --plugin=ckanext-dcatapit vocabulary initdb -c "${CKAN_CONFIG}/ckan.ini"
 
+# Setup Datastore
+# paster --plugin=ckan datastore set-permissions -c "$CKAN_INI_PATH" > "/tmp/set_permissions.sql"
+# psql  -h db -p 5432 -U postgres -f "/tmp/set_permissions.sql"
+
+# Setup Multilang
+paster --plugin=ckanext-multilang multilangdb initdb --config="$CKAN_INI_PATH"
+
 # Harvesting consumer
-nohup paster --plugin=ckanext-harvest harvester gather_consumer -c "${CKAN_CONFIG}/ckan.ini" &
-nohup paster --plugin=ckanext-harvest harvester fetch_consumer -c "${CKAN_CONFIG}/ckan.ini" &
+nohup /harvest_fetch_and_gather.sh gather_consumer &
+nohup /harvest_fetch_and_gather.sh fetch_consumer  &
 
 exec "$@"

@@ -1,0 +1,2 @@
+curl 'http://agid.geo-solutions.it/api/3/action/package_search?fq=dataset_type:harvest' | json_pp > sources.json.all
+
