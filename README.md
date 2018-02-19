@@ -47,7 +47,8 @@ PostgreSQL image (geosolutionsit/dati-ckan-docker:postgresql-10.1) is just a tag
 3. git submodule update --init --recursive
 4. ./build_local.sh #it will build the images needed by docker-compoose
 5. docker-compose up -d # it will run all the needed containers
-6. ./init.sh # it will configure the plugins and it will create all the vocabolaries
+6. identify the name of the CKAN Container and run the following command: `docker exec  -ti <ckan> /ckan-init.sh`
+   where `<ckan>` is the name of the container as per `docker ps` command output
 
 Then you can open the ckan home [http://localhost:5000](http://localhost:5000).
 The init.sh script creates an admin user with the following credentials: ckanadmin/ckanpassword and initialize the various plugins
