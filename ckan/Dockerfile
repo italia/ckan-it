@@ -150,3 +150,10 @@ EXPOSE 5000
 
 WORKDIR "${CKAN_CONFIG}"
 CMD ["paster","serve","ckan.ini"]
+
+
+# Install cron. Remember to add tracking into ckan.ini 
+RUN apt-get update
+RUN apt-get install -y cron
+RUN (crontab -l ; echo "@hourly root /usr/bin/python /usr/local/bin/paster --plugin=ckan tracking update -c /etc/ckan/default/ckan.ini && /usr/local/bin/paster --plugin=ckan search-index rebuild -r -c /etc/ckan/default/ckan.ini") | crontab
+
