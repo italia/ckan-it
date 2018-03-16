@@ -1,0 +1,9 @@
+{
+   "title": "Regione Piemonte", 
+   "name": "regione-piemonte", 
+   "url": "http://api.smartdatanet.it/metadataapi/api/dcat/dataset_list?opendata=true&tenant=regpie&rows=1000&linkedData=true&outputFormat=turtle", 
+   "type": "harvest", 
+   "source_type": "dcat_rdf", 
+   "owner_org": "regione-piemonte", 
+   "frequency": "MANUAL"
+}

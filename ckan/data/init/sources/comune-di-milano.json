@@ -1,0 +1,9 @@
+{
+   "title": "Comune di Milano", 
+   "name": "comune-di-milano", 
+   "url": "http://dati.comune.milano.it/catalog.rdf", 
+   "type": "harvest", 
+   "source_type": "dcat_rdf", 
+   "owner_org": "comune-di-milano", 
+   "frequency": "MANUAL"
+}

@@ -1,0 +1,9 @@
+{
+   "title": "Universit\u00e0 di Bologna", 
+   "name": "universita-di-bologna", 
+   "url": "https://dati.unibo.it/catalog.rdf", 
+   "type": "harvest", 
+   "source_type": "dcat_rdf", 
+   "owner_org": "universita-di-bologna", 
+   "frequency": "MANUAL"
+}

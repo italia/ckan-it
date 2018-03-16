@@ -1,0 +1,9 @@
+{
+   "title": "MIUR", 
+   "name": "miur", 
+   "url": "http://dati.ustat.miur.it/catalog.rdf", 
+   "type": "harvest", 
+   "source_type": "dcat_rdf", 
+   "owner_org": "miur", 
+   "frequency": "MANUAL"
+}

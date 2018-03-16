@@ -1,0 +1,10 @@
+{
+   "title": "Regione Umbria", 
+   "name": "regione-umbria", 
+   "url": "http://dati.umbria.it/", 
+   "type": "harvest", 
+   "source_type": "CKAN-DCATAPIT", 
+   "config": "{\"clean_tags\":true,\"default_extras\":{\r\n    \"source_catalog_title\":\"Regione Umbria\",\r\n    \"source_catalog_description\":\"Catalogo OpenData della Regione Umbria\",  \r\n    \"source_catalog_homepage\":\"http://dati.umbria.it/\", \r\n    \"source_catalog_language\":\"ITA\", \r\n    \"source_catalog_modified\":\"2017-01-01T00:00:00\"}}", 
+   "owner_org": "regione-umbria", 
+   "frequency": "MANUAL"
+}
