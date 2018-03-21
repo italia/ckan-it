@@ -1,6 +1,6 @@
 {
    "title": "Regione Sardegna", 
-   "name": "regionesardegna", 
+   "name": "regione-sardegna", 
    "url": "http://dati.regione.sardegna.it/", 
    "type": "harvest", 
    "source_type": "CKAN-DCATAPIT", 
