@@ -65,6 +65,10 @@ RUN chmod 777 $CKAN_CONFIG/ckan.ini
 ADD ./data/config/theme_to_group.ini $CKAN_CONFIG
 RUN chmod 666 $CKAN_CONFIG/theme_to_group.ini
 
+# CKAN group to DCATAPIT theme mapping file
+ADD ./data/config/topics.json $CKAN_CONFIG
+RUN chmod 666 $CKAN_CONFIG/topics.json
+
 # Copy various data and initialization files
 RUN mkdir $CKAN_HOME/data/
 ADD ./data $CKAN_HOME/data/
