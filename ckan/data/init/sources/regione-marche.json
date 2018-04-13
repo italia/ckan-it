@@ -1,0 +1,9 @@
+{
+   "title": "Regione Marche", 
+   "name": "regione-marche", 
+   "url": "http://goodpa.regione.marche.it/", 
+   "type": "harvest", 
+   "source_type": "CKAN-DCATAPIT", 
+   "owner_org": "regione-marche", 
+   "frequency": "MANUAL"
+}

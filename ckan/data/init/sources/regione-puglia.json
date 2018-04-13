@@ -1,0 +1,9 @@
+{
+   "title": "Regione Puglia", 
+   "name": "regione-puglia", 
+   "url": "http://www.dataset.puglia.it/", 
+   "type": "harvest", 
+   "source_type": "CKAN-DCATAPIT", 
+   "owner_org": "regione-puglia", 
+   "frequency": "MANUAL"
+}

@@ -1,0 +1,9 @@
+{
+   "title": "Comune di Reggio Calabria", 
+   "name": "comune-di-reggio-calabria", 
+   "url": "http://ckan.reggiocal.it/", 
+   "type": "harvest", 
+   "source_type": "CKAN-DCATAPIT", 
+   "owner_org": "comune-di-reggio-calabria", 
+   "frequency": "MANUAL"
+}

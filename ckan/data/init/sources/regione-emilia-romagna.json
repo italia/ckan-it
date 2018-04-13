@@ -1,10 +1,9 @@
 {
    "title": "Regione Emilia Romagna", 
    "name": "regione-emilia-romagna", 
-   "url": "http://dati.emilia-romagna.it/", 
+   "url": "http://dati.emilia-romagna.it/catalog.rdf", 
    "type": "harvest", 
-   "source_type": "CKAN-DCATAPIT", 
-   "config": "{\"clean_tags\":true,\r\n \"default_extras\":{\r\n     \"source_catalog_title\":\"Regione Emilia Romagna\",\r\n     \"source_catalog_description\":\"Catalogo OpenData della Regione Emilia Romagna\", \r\n     \"source_catalog_homepage\":\"http://dati.emilia-romagna.it/\", \r\n     \"source_catalog_language\":\"http://publications.europa.eu/resource/authority/language/ITA\", \r\n     \"source_catalog_modified\":\"2017-01-01T00:00:00\"}}", 
+   "source_type": "dcat_rdf", 
    "owner_org": "regione-emilia-romagna", 
    "frequency": "MANUAL"
 }
