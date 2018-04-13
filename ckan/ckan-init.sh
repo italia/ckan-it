@@ -19,8 +19,7 @@ paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europ
 wget "https://github.com/italia/daf-ontologie-vocabolari-controllati/raw/c998fb435ee77082880b6f98e230ec5273a09e6d/VocabolariControllati/ClassificazioneTerritorio/Istat-Classificazione-08-Territorio.rdf" -O "/tmp/Istat-Classificazione-08-Territorio.rdf"
 paster --plugin=ckanext-dcatapit vocabulary load --filename "/tmp/Istat-Classificazione-08-Territorio.rdf" --name regions --config "$CKAN_INI_PATH"
 
-wget "https://raw.githubusercontent.com/italia/daf-ontologie-vocabolari-controllati/50738e7527b44af9c25d75b955f67f927553f51f/VocabolariControllati/Licenze/Licenze.rdf" \
--O "/tmp/Licenze.rdf"
+wget "https://raw.githubusercontent.com/italia/daf-ontologie-vocabolari-controllati/master/VocabolariControllati/licences/licences.rdf" -O "/tmp/Licenze.rdf"
 paster --plugin=ckanext-dcatapit vocabulary load --filename "/tmp/Licenze.rdf" --name licenses --config "$CKAN_INI_PATH"
 paster --plugin=ckanext-dcatapit vocabulary load --filename "$EUROVOC_TO_THEMES_MAPPING_FILE" --name subthemes --config "$CKAN_INI_PATH" "$PATH_TO_EUROVOC"
 
