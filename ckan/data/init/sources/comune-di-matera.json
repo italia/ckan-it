@@ -1,0 +1,9 @@
+{
+   "title": "Comune di Matera", 
+   "name": "comune-di-matera", 
+   "url": "http://dati.comune.matera.it/catalog.rdf", 
+   "type": "harvest", 
+   "source_type": "dcat_rdf", 
+   "owner_org": "comune-di-matera", 
+   "frequency": "MANUAL"
+}

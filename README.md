@@ -2,6 +2,11 @@
 
 This project provides everything you need to run ckan plus a set of plugins for supporting Italian open data. It has been currently used only in testing environments but we think it can provide a good base for running a production service (please feel free to contribute with pull requests to this end). 
 
+Developed in collaboration with:
+
+![logo](https://user-images.githubusercontent.com/1280027/39175768-6f2884ac-47ab-11e8-83c5-fe1c370d2ca8.png)
+
+
 ## Docker containers for ckan + plugin dcat + dcat-ap-it
 
 ## Container images details:

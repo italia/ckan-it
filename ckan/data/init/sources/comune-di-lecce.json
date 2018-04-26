@@ -1,0 +1,9 @@
+{
+   "title": "Comune di Lecce", 
+   "name": "comune-di-lecce", 
+   "url": "http://dati.comune.lecce.it/", 
+   "type": "harvest", 
+   "source_type": "CKAN-DCATAPIT", 
+   "owner_org": "comune-di-lecce", 
+   "frequency": "MANUAL"
+}

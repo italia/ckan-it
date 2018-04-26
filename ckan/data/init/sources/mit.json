@@ -1,0 +1,10 @@
+{
+   "title": "MIT", 
+   "notes": "Ministero delle Infrastrutture e Trasporti", 
+   "name": "mit", 
+   "url": "http://dati.mit.gov.it/dcat/catalog.rdf", 
+   "type": "harvest", 
+   "source_type": "dcat_rdf", 
+   "owner_org": "mit", 
+   "frequency": "MANUAL"
+}

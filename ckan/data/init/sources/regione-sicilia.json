@@ -1,0 +1,9 @@
+{
+   "title": "Regione Sicilia", 
+   "name": "regione-sicilia", 
+   "url": "https://dati.regione.sicilia.it/catalog.rdf", 
+   "type": "harvest", 
+   "source_type": "dcat_rdf", 
+   "owner_org": "regione-sicilia", 
+   "frequency": "MANUAL"
+}

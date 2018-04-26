@@ -1,0 +1,9 @@
+{
+   "title": "Provincia di Asti", 
+   "name": "provincia-di-asti", 
+   "url": "http://dati.provincia.asti.it/", 
+   "type": "harvest", 
+   "source_type": "CKAN-DCATAPIT", 
+   "owner_org": "provincia-di-asti", 
+   "frequency": "MANUAL"
+}

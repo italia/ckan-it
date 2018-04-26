@@ -1,0 +1,9 @@
+{
+   "title": "Regione Emilia Romagna", 
+   "name": "regione-emilia-romagna", 
+   "url": "http://dati.emilia-romagna.it/catalog.rdf", 
+   "type": "harvest", 
+   "source_type": "dcat_rdf", 
+   "owner_org": "regione-emilia-romagna", 
+   "frequency": "MANUAL"
+}

@@ -1,0 +1,9 @@
+{
+   "title": "MIUR-2", 
+   "name": "miur-2", 
+   "url": "http://dati.istruzione.it/opendata/CatalogoRDF", 
+   "type": "harvest", 
+   "source_type": "dcat_rdf", 
+   "owner_org": "miur", 
+   "frequency": "MANUAL"
+}

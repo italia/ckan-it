@@ -1,0 +1,9 @@
+{
+   "title": "Regione Sardegna", 
+   "description": "Regione Autonoma della Sardegna", 
+   "name": "regione-sardegna", 
+   "site": "http://www.regione.sardegna.it/", 
+   "email": "regione@regione.sardegna.it", 
+   "identifier": "r_sardeg", 
+   "region": "sardegna"
+}

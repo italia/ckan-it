@@ -1,0 +1,9 @@
+{
+   "title": "Comune di Francavilla Fontana", 
+   "name": "comune-di-francavilla-fontana", 
+   "url": "http://dati.comune.francavillafontana.br.it/catalog.rdf", 
+   "type": "harvest", 
+   "source_type": "dcat_rdf", 
+   "owner_org": "comune-di-francavilla-fontana", 
+   "frequency": "MANUAL"
+}

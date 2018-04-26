@@ -1,0 +1,9 @@
+{
+   "title": "Regione Lazio", 
+   "name": "regione-lazio", 
+   "url": "https://dati.lazio.it/catalog", 
+   "type": "harvest", 
+   "source_type": "CKAN-DCATAPIT", 
+   "owner_org": "regione-lazio", 
+   "frequency": "MANUAL"
+}
