@@ -137,12 +137,18 @@ ENTRYPOINT ["/ckan-entrypoint.sh"]
 # Add startup scripts
 ADD ./ckan-init.sh /
 RUN chmod +x /ckan-init.sh
+
 ADD ./wait-for-services.sh /
 RUN chmod +x /wait-for-services.sh
+
 ADD ./harvest_fetch_and_gather.sh /
 RUN chmod +x /harvest_fetch_and_gather.sh
-ADD ./periodic-harvest.sh /
+
+ADD ./periodic-harvest-run.sh /
 RUN chmod +x /periodic-harvest-run.sh
+
+ADD ./periodic-harvester-joball.sh /
+RUN chmod +x /periodic-harvester-joball.sh
 
 # Volumes 
 VOLUME ["/etc/ckan/default"]
