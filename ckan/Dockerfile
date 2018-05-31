@@ -16,7 +16,7 @@ RUN yum -y install libxml2 libxml2-devel libxslt libxslt-devel
 RUN yum -y install gdal-python python-pip python-imaging python-virtualenv \
             libxml2-python libxslt-python python-lxml \
             python-devel python-babel \
-            python-pylons python-repoze-who python-repoze-who-plugins-sa \
+            python-repoze-who python-repoze-who-plugins-sa \
             python-repoze-who-testutil python-repoze-who-friendlyform \
             python-tempita python-zope-interface policycoreutils-python
 RUN yum -y install postgresql wget

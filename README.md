@@ -73,6 +73,7 @@ How to do this really depends on how you run the containers. When running contai
 ```
 containerid=`docker ps | grep geosolutionsit/dati-ckan-docker:ckan-agid-devel | awk '{print $11}'`
 echo $containerid
-docker exec -it $containerid /periodic-harvest.sh 2>&1 /var/log/periodic-harvest.out
+docker exec -it $containerid /periodic-harvest-run.sh 2>&1 /var/log/periodic-harvest-run.out
+docker exec -it $containerid /periodic-harvester-joball.sh 2>&1 /var/log/periodic-harvest-joball.out
 ```
 And scheduling a periodic run of the above script every 15 minutes with CRON on the host machine
