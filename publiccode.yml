@@ -1,0 +1,66 @@
+# This repository adheres to the publiccode.yml standard by including this 
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.2'
+name: Dati CKAN
+releaseDate: '2018-08-28'
+url: 'https://github.com/italia/dati-ckan-docker.git'
+isBasedOn: 'https://github.com/ckan/ckan.git'
+softwareVersion: dev
+developmentStatus: development
+softwareType: standalone/web
+platforms:
+  - web
+categories:
+  - data-analytics
+  - data-collection
+  - data-visualization
+maintenance:
+  type: none
+legal:
+  license: Apache-2.0
+intendedAudience:
+  scope:
+    - science-and-technology
+    - research
+    - welfare
+    - government
+  countries:
+    - it
+localisation:
+  availableLanguages:
+    - it
+it:
+  countryExtensionVersion: '0.2'
+description:
+  it:
+    genericName: Data Management System
+    shortDescription: >-
+      This project provides everything you need to run ckan plus a set of
+      plugins for supporting Italian open data.
+    longDescription: >
+      This project provides everything you need to run ckan plus a set of 
+      plugins for supporting Italian open data. It has been currently used  only
+      in testing environments but we think it can provide a good base for 
+      running a production service (please feel free to contribute with pull 
+      requests to this end).
+
+
+      This project provides everything you need to run ckan plus a set of 
+      plugins for supporting Italian open data. It has been currently used  only
+      in testing environments but we think it can provide a good base for 
+      running a production service (please feel free to contribute with pull 
+      requests to this end).
+
+
+      This project provides everything you need to run ckan plus a set of 
+      plugins for supporting Italian open data. It has been currently used  only
+      in testing environments but we think it can provide a good base for 
+      running a production service (please feel free to contribute with pull 
+      requests to this end).
+    features:
+      - Statistics
+      - Text view
+      - Image view
+      - Harvest
