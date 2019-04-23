@@ -35,6 +35,7 @@ intendedAudience:
   countries:
     - it
 localisation:
+  localisationReady: false
   availableLanguages:
     - it
 it:
@@ -51,7 +52,7 @@ description:
       using docker-compose to orchestrate four containers providing CKAN 2.6.4, Solr 6.2,
       Redis 4.0.2, PostgreSQL 10.1.
       
-      Warning: this product is under active development and it is to be considered unstable.
+      "Warning: this product is under active development and it is to be considered unstable."
       It has been currently used only in testing environments,
       but we think it can provide a good base for running a production service
       (please feel free to contribute with pull requests to this end).
