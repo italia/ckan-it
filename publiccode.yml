@@ -16,20 +16,15 @@ categories:
   - data-analytics
   - data-collection
   - data-visualization
-  - open-data
-maintenance:
-  type: none
 legal:
-  license: 'Apache-2.0'
-  #repoOwner: 'City of Chicago'
-  #authorsFile: 'AUTHORS'
+  license: 'AGPL-3.0-or-later'
+  repoOwner: 'Team per la Trasformazione Digitale'
+  authorsFile: 'AUTHORS'
 maintenance:
-  type: 'contract'
-  #contacts:
-  #  - name: Francesco Rossi
-  #    email: "francesco.rossi@comune.reggioemilia.it"
-  #    affiliation: Comune di Reggio Emilia
-  #    phone: +39 231 13215112
+  type: 'internal'
+  contacts:
+    - name: 'Alessio Cimarelli'
+      email: 'alessio.cimarelli@gmail.com'
   
 intendedAudience:
   scope:
