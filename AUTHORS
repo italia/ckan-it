@@ -1,4 +1,4 @@
-Copyright (c) 2018 Presidenza del Consiglio dei Ministri
+Copyright (c) 2019 Presidenza del Consiglio dei Ministri
 
 Owner
 -----
@@ -8,9 +8,9 @@ Forum: https://forum.italia.it/c/daf
 Slack: #daf on https://developersitalia.slack.com
 Twitter: https://twitter.com/teamdigitaleIT
 
-Maintainers
+Maintainer
 -----------
-
+Alessio Cimarelli (alessio.cimarelli@gmail.com)
 
 Contributors
 ------------
@@ -29,4 +29,3 @@ Alessandro Parma ()
 Emanuele Tajariol (emanuele.tajariol@geo-solutions.it)
 
 The version control system provides attribution for specific lines of code.
-
