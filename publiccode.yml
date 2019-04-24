@@ -63,3 +63,5 @@ description:
       - Text view
       - Image view
       - Harvest
+    screenshots:
+      - screenshots/home.png
