@@ -40,6 +40,8 @@ localisation:
     - it
 it:
   countryExtensionVersion: '0.2'
+  riuso:
+    codiceIPA: PCM
 description:
   it:
     genericName: 'Data Management System'
