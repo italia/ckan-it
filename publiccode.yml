@@ -40,6 +40,8 @@ localisation:
     - it
 it:
   countryExtensionVersion: '0.2'
+  riuso:
+    codiceIPA: PCM
 description:
   it:
     genericName: 'Data Management System'
@@ -61,3 +63,8 @@ description:
       - Text view
       - Image view
       - Harvest
+    screenshots:
+      - screenshots/home.png
+      - screenshots/dataset.png
+      - screenshots/organizzazioni.png
+      - screenshots/gruppi.png
