@@ -25,4 +25,4 @@ paster --plugin=ckanext-dcatapit vocabulary load --filename "$EUROVOC_TO_THEMES_
 
 
 APIKEY=$(psql -q -t -h db -U postgres -d ckan -c "select apikey from public.user where name='ckanadmin';")
-${CKAN_HOME}/data/init/create.sh $APIKEY localhost:5000
+${CKAN_HOME}/data/init/create-groups.sh $APIKEY localhost:5000

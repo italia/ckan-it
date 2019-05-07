@@ -122,8 +122,8 @@ RUN chmod +x /ckan-entrypoint.sh
 ENTRYPOINT ["/ckan-entrypoint.sh"]
 
 # Add startup scripts
-ADD ./ckan-init.sh /
-RUN chmod +x /ckan-init.sh
+ADD ./ckan-init.sh ./ckan-harvest-init.sh /
+RUN chmod +x /ckan-init.sh /ckan-harvest-init.sh
 
 ADD ./wait-for-services.sh /
 RUN chmod +x /wait-for-services.sh
