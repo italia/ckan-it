@@ -62,7 +62,7 @@ If you want to import data from all external sources we support, follow these ad
 
 1. Identify the name of the CKAN Container and run the following command: `containerid=$(docker ps | grep dati-ckan-docker_ckan | awk '{print $11}') && docker exec -it $containerid /ckan-harvest-init.sh` where in `$containerid` there is the name of the container as per `docker ps` command output
 2. Browse to [http://localhost:5000/harvest](http://localhost:5000/harvest) to check all imported sources
-3. Identify the name of the CKAN Container and run the following command: `containerid=$(docker ps | grep dati-ckan-docker_ckan | awk '{print $11}') && docker exec -it $containerid /periodic-harvest-run.sh 2>&1 /var/log/periodic-harvest-run.out && docker exec -it $containerid /periodic-harvester-joball.sh 2>&1 /var/log/periodic-harvest-joball.out` where in `$containerid` there is the name of the container as per `docker ps` command output
+3. Identify the name of the CKAN Container and run the following command: `containerid=$(docker ps | grep dati-ckan-docker_ckan | awk '{print $11}') && docker exec -it $containerid /periodic-harvest-run.sh && docker exec -it $containerid /periodic-harvester-joball.sh` where in `$containerid` there is the name of the container as per `docker ps` command output
 
 You can see logs during harvesting import with following command: `docker logs ckan -f`.
 
