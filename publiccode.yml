@@ -43,7 +43,7 @@ it:
   riuso:
     codiceIPA: PCM
 description:
-  it:
+  en:
     genericName: 'Data Management System'
     shortDescription: >-
       This project provides everything you need to run CKAN plus a set of
