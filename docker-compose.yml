@@ -1,11 +1,11 @@
 version: '2'
 services:
   solr:
-    build: './solr'
+    build: ./solr
     stdin_open: true
     tty: true
     labels:
-      name: solr-agid-devel
+      name: ckan-solr
       io.rancher.container.pull_image: always
   ckan:
     build: ./ckan
@@ -31,10 +31,10 @@ services:
     - serve
     - /etc/ckan/default/ckan.ini
     labels:
-      name: ckan-agid-devel
+      name: ckan-core
       io.rancher.container.pull_image: always
   redis:
-    image: redis:latest
+    image: redis:5.0.5
     stdin_open: true
     tty: true
   db:
