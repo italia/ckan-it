@@ -10,11 +10,11 @@ paster --plugin=ckan user add ckanadmin email=admin@mail.com password=ckanpasswo
 paster --plugin=ckan sysadmin add ckanadmin --config "$CKAN_INI_PATH"
 
 # Vocabulary Load
-paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/mdr/resource/authority/language/skos/languages-skos.rdf --name languages --config "$CKAN_INI_PATH"
-paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/mdr/resource/authority/data-theme/skos/data-theme-skos.rdf --name eu_themes --config "$CKAN_INI_PATH"
-paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/mdr/resource/authority/place/skos/places-skos.rdf --name places --config "$CKAN_INI_PATH"
-paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/mdr/resource/authority/frequency/skos/frequencies-skos.rdf --name frequencies --config "$CKAN_INI_PATH"
-paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/mdr/resource/authority/file-type/skos/filetypes-skos.rdf --name filetype --config "$CKAN_INI_PATH"
+paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/resource/distribution/language/20180926-0/rdf/skos_core/languages-skos.rdf --name languages --config "$CKAN_INI_PATH"
+paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/resource/distribution/data-theme/20160921-0/rdf/skos_core/data-theme-skos.rdf --name eu_themes --config "$CKAN_INI_PATH"
+paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/resource/distribution/place/20181212-0/rdf/skos_core/places-skos.rdf --name places --config "$CKAN_INI_PATH"
+paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/resource/distribution/frequency/20181212-0/rdf/skos_core/frequencies-skos.rdf --name frequencies --config "$CKAN_INI_PATH"
+paster --plugin=ckanext-dcatapit vocabulary load --url http://publications.europa.eu/resource/distribution/file-type/20181212-0/rdf/skos_core/filetypes-skos.rdf --name filetype --config "$CKAN_INI_PATH"
 
 wget "https://raw.githubusercontent.com/italia/daf-ontologie-vocabolari-controllati/master/VocabolariControllati/territorial-classifications/regions/regions.rdf" -O "/tmp/regions.rdf"
 paster --plugin=ckanext-dcatapit vocabulary load --filename "/tmp/regions.rdf" --name regions --config "$CKAN_INI_PATH"
@@ -25,4 +25,4 @@ paster --plugin=ckanext-dcatapit vocabulary load --filename "$EUROVOC_TO_THEMES_
 
 
 APIKEY=$(psql -q -t -h db -U postgres -d ckan -c "select apikey from public.user where name='ckanadmin';")
-${CKAN_HOME}/data/init/create.sh $APIKEY localhost:5000
+${CKAN_HOME}/data/init/create-groups.sh $APIKEY localhost:5000

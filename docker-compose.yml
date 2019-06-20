@@ -1,14 +1,14 @@
 version: '2'
 services:
   solr:
-    image: geosolutionsit/dati-ckan-docker:solr-agid-devel
+    build: './solr'
     stdin_open: true
     tty: true
     labels:
       name: solr-agid-devel
       io.rancher.container.pull_image: always
   ckan:
-    image: geosolutionsit/dati-ckan-docker:ckan-agid-devel
+    build: ./ckan
     environment:
       CKAN_SITE_URL: http://localhost:5000
       CKAN_INI_PATH: /etc/ckan/default/ckan.ini
@@ -38,7 +38,6 @@ services:
     stdin_open: true
     tty: true
   db:
-    image: geosolutionsit/dati-ckan-docker:postgresql-10.1
+    image: ckan/postgresql:latest
     stdin_open: true
     tty: true
-

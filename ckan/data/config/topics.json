@@ -10,7 +10,7 @@
             "agricoltura-e-sviluppo-rurale",
             "agricoltura-pesca-politiche-forestali-e-alimentari",
             "animali",
-            "attivit‡ agricola",
+            "attivit√† agricola",
             "bevande e zucchero",
             "coltivazione di terreni agricoli",
             "foresta",
@@ -46,7 +46,7 @@
             "commercio-e-consumatori",
             "concorrenza",
             "consumo",
-            "contabilit‡ nazionale",
+            "contabilit√† nazionale",
             "crescita economica",
             "distribuzione commerciale",
             "economia",
@@ -57,8 +57,8 @@
             "elettronica ed elettrotecnica",
             "finanza-e-controlli",
             "finanze pubbliche e politica di bilancio",
-            "fiscalitÚ",
-            "forma giuridica di societ‡",
+            "fiscalit√†",
+            "forma giuridica di societ√†",
             "gestione amministrativa",
             "gestione contabile-",
             "imprese",
@@ -236,7 +236,7 @@
          "syn" : [
             "JUST",
             "just",
-            "diritti e libert‡",
+            "diritti e libert√†",
             "diritto civile",
             "diritto internazionale",
             "diritto penale",
@@ -264,11 +264,11 @@
             "geografia politica",
             "paesi e territori d'oltremare",
             "regioni degli Stati membri dell'Unione europea",
-            "Regioni e citt‡",
+            "Regioni e citt√†",
             "regioni-e-citta",
-            "Regioni e citt‡"
+            "Regioni e citt√†"
          ],
-         "name" : "Regioni e citt‡"
+         "name" : "Regioni e citt√†"
       },
       {
          "syn" : [
@@ -304,16 +304,16 @@
             "urbanistica ed edilizia",
             "vita sociale",
             "welfare",
-            "Popolazione e societ‡"
+            "Popolazione e societ√†"
          ],
-         "name" : "Popolazione e societ‡"
+         "name" : "Popolazione e societ√†"
       },
       {
          "syn" : [
             "TECH",
             "tech",
             "produzione",
-            "ricerca e propriet‡ intellettuale",
+            "ricerca e propriet√† intellettuale",
             "scienza-e-tecnologia",
             "scienze naturali e applicate",
             "scienze umane",
@@ -343,7 +343,7 @@
       }
    ],
    "meta" : {
-      "authority_file_src" : "http://publications.europa.eu/mdr/authority/data-theme/",
+      "authority_file_src" : "http://publications.europa.eu/resource/authority/data-theme/",
       "vocabulary" : "topics",
       "property" : "dcat:theme"
    }
