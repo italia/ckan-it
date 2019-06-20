@@ -7,23 +7,26 @@ WARNING: this software is under development. It has been currently used only in 
 
 ## Container images details
 
-- Ckan 2.6.7 with following extensions:
+- [Ckan 2.6.7](https://github.com/ckan/ckan/) with following extensions:
 
-    - stats
+  - stats
+  - view
     - text_view
     - image_view
     - recline_view
-    - datastore
+  - datastore
+  - [spatial](https://github.com/ckan/ckanext-spatial/)
     - spatial_metadata
     - spatial_query
-    - harvest
+  - [harvest](https://github.com/ckan/ckanext-harvest/)
     - ckan_harvester
-    - multilang
+  - [multilang](https://github.com/italia/ckanext-multilang/)
     - multilang_harvester
-    - dcat
+  - [dcat](https://github.com/ckan/ckanext-dcat/)
     - dcat_rdf_harvester
     - dcat_json_harvester
     - dcat_json_interface
+  - [dcatapit](https://github.com/italia/ckanext-dcatapit/)
     - dcatapit_pkg
     - dcatapit_org
     - dcatapit_config
@@ -34,9 +37,9 @@ WARNING: this software is under development. It has been currently used only in 
 
 - Solr 6.2
 
-- Redis 5.x (latest)
+- Redis 5.0.5 from [Docker Hub](https://hub.docker.com/_/redis?tab=tags)
 
-- CKAN PostgreSQL with PostGIS extension (latest)
+- CKAN PostgreSQL with PostGIS extension ([latest](https://hub.docker.com/r/ckan/postgresql/tags))
 
 ## Follow these steps to run the Docker images (required)
 
@@ -59,6 +62,8 @@ WARNING: all data are stored in internal Docker volumes without persistence! In 
 ## Follow these steps to setup and run CKAN harvesting (optional)
 
 If you want to import data from all external sources we support, follow these additional steps.
+
+WARNING: note that initial organizations and sources are loaded once from `ckan/data/init/` folder, if `orgs/` and `sources/` are empty next steps will fail. You can use the GUI to manually add new organizations and sources and then skip to the second step.
 
 1. Identify the name of the CKAN Container and run the following command: `containerid=$(docker ps | grep dati-ckan-docker_ckan | awk '{print $11}') && docker exec -it $containerid /ckan-harvest-init.sh` where in `$containerid` there is the name of the container as per `docker ps` command output
 2. Browse to [http://localhost:5000/harvest](http://localhost:5000/harvest) to check all imported sources
