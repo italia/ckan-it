@@ -1,123 +1,126 @@
-#!/bin/sh
+#!/bin/env bash
 
 set -e
 
-# URL for the primary database, in the format expected by sqlalchemy (required
-# unless linked to a container called 'db')
-: ${CKAN_SQLALCHEMY_URL:=}
-# URL for solr (required unless linked to a container called 'solr')
-: ${CKAN_SOLR_URL:=}
-# URL for redis (required unless linked to a container called 'redis')
-: ${CKAN_REDIS_URL:=}
+config="${CKAN_CONFIG}/ckan.ini"
 
-CONFIG="${CKAN_CONFIG}/ckan.ini"
+wait_for_services () {
+  until psql -h "${CKAN_DB_HOST}" -U "${CKAN_DB_USER}" -c '\q'; do
+    echo "Postgres is not ready, yet. Trying again in two seconds."
+    sleep 2
+  done
 
-abort () {
-  echo "$@" >&2
-  exit 1
-}
+  until curl -f "http://${CKAN_SOLR_HOST}:${CKAN_SOLR_PORT}"; do
+    echo "Solr is not ready, yet. Trying again in two seconds."
+    sleep 2
+  done
 
-set_environment () {
-  export CKAN_SQLALCHEMY_URL=${CKAN_SQLALCHEMY_URL}
-  export CKAN_SOLR_URL=${CKAN_SOLR_URL}
-  export CKAN_REDIS_URL=${CKAN_REDIS_URL}
-  export CKAN_STORAGE_PATH=${CKAN_STORAGE_PATH}
-  export CKAN_SITE_URL=${CKAN_SITE_URL}
+  until redis-cli -h "${CKAN_REDIS_HOST}" -p "${CKAN_REDIS_PORT}" <<< ping | grep "PONG"; do
+    echo "Redis is not ready, yet. Trying again in two seconds."
+    sleep 2
+  done
+
+  echo "All dependencies are ready."
 }
 
 write_config () {
-  # Note that this only gets called if there is no config, see below!
-  paster make-config --no-interactive ckan "$CONFIG"
+  # Create config
+  paster make-config --no-interactive ckan ${config}
 
-  # The variables above will be used by CKAN, but
-  # in case want to use the config from ckan.ini use this
-  #ckan-paster --plugin=ckan config-tool "$CONFIG" -e \
-  #    "sqlalchemy.url = ${CKAN_SQLALCHEMY_URL}" \
-  #    "solr_url = ${CKAN_SOLR_URL}" \
-  #    "ckan.redis.url = ${CKAN_REDIS_URL}" \
-  #    "ckan.storage_path = ${CKAN_STORAGE_PATH}" \
-  #    "ckan.site_url = ${CKAN_SITE_URL}"
+  # Edit DEFAULT section
+  paster --plugin=ckan config-tool ${config} -s "DEFAULT" "debug = ${CKAN_DEBUG:=false}"
+
+  # Edit app:main section
+  paster --plugin=ckan config-tool ${config} -s "app:main" \
+                                                "ckan.harvest.mq.type = redis" \
+                                                "ckan.harvest.mq.hostname = redis" \
+                                                "sqlalchemy.url = ${CKAN_SQLALCHEMY_URL}" \
+                                                "ckan.site_url = ${CKAN_SITE_URL}" \
+                                                "ckan.auth.user_create_organizations = true" \
+                                                "ckanext.dcat.rdf.profiles = euro_dcat_ap it_dcat_ap" \
+                                                "ckanext.dcat.base_uri = ${CKAN_DCAT_BASE_URI}" \
+                                                "ckanext.dcat.expose_subcatalogs = True" \
+                                                "ckanext.dcat.clean_tags = True" \
+                                                "ckanext.dcatapit.theme_group_mapping.file = ${CKAN_CONFIG}/theme_to_group.ini" \
+                                                "ckanext.dcatapit.nonconformant_themes_mapping.file = ${CKAN_CONFIG}/topics.json" \
+                                                "geonames.username = demo" \
+                                                "geonames.limits.countries = IT" \
+                                                "ckan.site_id = dcatapit_docker_default" \
+                                                "solr_url=${CKAN_SOLR_URL}" \
+                                                "ckan.redis.url = ${CKAN_REDIS_URL}" \
+                                                "ckan.cors.origin_allow_all = true" \
+                                                "ckan.plugins = stats text_view image_view recline_view spatial_metadata spatial_query harvest ckan_harvester multilang multilang_harvester dcat dcat_rdf_harvester dcat_json_harvester dcat_json_interface dcatapit_pkg dcatapit_org dcatapit_config dcatapit_harvester dcatapit_ckan_harvester dcatapit_csw_harvester dcatapit_harvest_list dcatapit_subcatalog_facets dcatapit_theme_group_mapper" \
+                                                "ckan.spatial.srid = 4326" \
+                                                "ckan.locale_default = it" \
+                                                "ckan.locale_order = it de fr en pt_BR ja cs_CZ ca es el sv sr sr@latin no sk fi ru pl nl bg ko_KR hu sa sl lv" \
+                                                "ckan.locales_offered = it de fr en" \
+                                                "ckan.locales_filtered_out = it_IT"
+
+  # Edit handlers section
+  paster --plugin=ckan config-tool ${config} -s "handlers" \
+                                                "keys = console, file"
+
+  # Edit logger_root section
+  paster --plugin=ckan config-tool ${config} -s "logger_root" \
+                                                "handlers = console, file"
+
+  # Edit logger_ckan section
+  paster --plugin=ckan config-tool ${config} -s "logger_ckan" \
+                                                "handlers = console, file" 
+
+  # Edit logger_ckanext section
+  paster --plugin=ckan config-tool ${config} -s "logger_ckanext" \
+                                                "handlers = console, file"
+
+  # Edit handler_file section
+  paster --plugin=ckan config-tool ${config} -s "handler_file" \
+                                                "class = logging.handlers.RotatingFileHandler" \
+                                                "formatter = generic" \
+                                                "level = NOTSET" \
+                                                "args = (\"${CKAN_LOG_DIR}/ckan.log\", \"a\", 20000000, 9)"
 }
 
-link_postgres_url () {
-  local user=$DB_ENV_POSTGRES_USER
-  local pass=$DB_ENV_POSTGRES_PASSWORD
-  local db=$DB_ENV_POSTGRES_DB
-  local host=$DB_PORT_5432_TCP_ADDR
-  local port=$DB_PORT_5432_TCP_PORT
-  echo "postgresql://${user}:${pass}@${host}:${port}/${db}"
+init_db () {
+  # Initializes the database
+  paster --plugin=ckan db init -c "${config}"
+
+  # Initialize harvester database
+  paster --plugin=ckanext-harvest harvester initdb -c "${config}"
+
+  # Inizialize dcat-ap-it database
+  paster --plugin=ckanext-dcatapit vocabulary initdb -c "${config}"
+
+  # Setup multilang database
+  paster --plugin=ckanext-multilang multilangdb initdb --config="${config}"
 }
 
-link_solr_url () {
-  local host=$SOLR_PORT_8983_TCP_ADDR
-  local port=$SOLR_PORT_8983_TCP_PORT
-  echo "http://${host}:${port}/solr/ckan"
+harvesting () {
+  nohup /harvest_fetch_and_gather.sh gather_consumer &> "${CKAN_LOG_DIR}"/gather_consumer &
+  nohup /harvest_fetch_and_gather.sh fetch_consumer &> "${CKAN_LOG_DIR}"/fetch_consumer &
 }
 
-link_redis_url () {
-  local host=$REDIS_PORT_6379_TCP_ADDR
-  local port=$REDIS_PORT_6379_TCP_PORT
-  echo "redis://${host}:${port}/1"
+ckan_configure () {
+  nohup /ckan-init.sh &> "${CKAN_LOG_DIR}"/ckan_init &
 }
 
-# If we don't already have a config file, bootstrap
-if [ ! -e "$CONFIG" ]; then
+ckan_serve () {
+  paster serve "${config}"
+}
+
+# Main section
+
+wait_for_services
+
+if [ ! -e "${config}" ]; then
   write_config
 fi
 
-# Set environment variables
-if [ -z "$CKAN_SQLALCHEMY_URL" ]; then
-  if ! CKAN_SQLALCHEMY_URL=$(link_postgres_url); then
-    abort "ERROR: no CKAN_SQLALCHEMY_URL specified and linked container called 'db' was not found"
-  else
-    #If that worked, use the DB details to wait for the DB
-    export PGHOST=${DB_PORT_5432_TCP_ADDR}
-    export PGPORT=${DB_PORT_5432_TCP_PORT}
-    export PGDATABASE=${DB_ENV_POSTGRES_DB}
-    export PGUSER=${DB_ENV_POSTGRES_USER}
-    export PGPASSWORD=${DB_ENV_POSTGRES_PASSWORD}
+init_db
 
-    # wait for postgres db to be available, immediately after creation
-    # its entrypoint creates the cluster and dbs and this can take a moment
-    for tries in $(seq 30); do
-      psql -c 'SELECT 1;' 2> /dev/null && break
-      sleep 0.3
-    done
-  fi
-fi
+harvesting
 
-if [ -z "$CKAN_SOLR_URL" ]; then
-  if ! CKAN_SOLR_URL=$(link_solr_url); then
-    abort "ERROR: no CKAN_SOLR_URL specified and linked container called 'solr' was not found"
-  fi
-fi
-    
-if [ -z "$CKAN_REDIS_URL" ]; then
-  if ! CKAN_REDIS_URL=$(link_redis_url); then
-    abort "ERROR: no CKAN_REDIS_URL specified and linked container called 'redis' was not found"
-  fi
-fi
+ckan_configure
 
-set_environment
-
-# Initializes the Database
-paster --plugin=ckan db init -c "${CKAN_CONFIG}/ckan.ini"
-
-# Initialize Harvest Database
-paster --plugin=ckanext-harvest harvester initdb -c "${CKAN_CONFIG}/ckan.ini"
-
-# Inizialize DCAT-AP_IT
-paster --plugin=ckanext-dcatapit vocabulary initdb -c "${CKAN_CONFIG}/ckan.ini"
-
-# Setup Datastore
-# paster --plugin=ckan datastore set-permissions -c "$CKAN_INI_PATH" > "/tmp/set_permissions.sql"
-# psql  -h db -p 5432 -U postgres -f "/tmp/set_permissions.sql"
-
-# Setup Multilang
-paster --plugin=ckanext-multilang multilangdb initdb --config="$CKAN_INI_PATH"
-
-# Harvesting consumer
-nohup /harvest_fetch_and_gather.sh gather_consumer &
-nohup /harvest_fetch_and_gather.sh fetch_consumer  &
+ckan_serve
 
 exec "$@"
