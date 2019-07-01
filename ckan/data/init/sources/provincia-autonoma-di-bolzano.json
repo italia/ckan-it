@@ -1,9 +1,0 @@
-{
-   "title": "Provincia Autonoma di Bolzano", 
-   "name": "provincia-autonoma-di-bolzano", 
-   "url": "http://dati.retecivica.bz.it/it/catalog.rdf", 
-   "type": "harvest", 
-   "source_type": "dcat_rdf", 
-   "owner_org": "provincia-autonoma-di-bolzano", 
-   "frequency": "MANUAL"
-}

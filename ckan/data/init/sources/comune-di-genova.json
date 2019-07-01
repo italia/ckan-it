@@ -1,9 +1,0 @@
-{
-   "title": "Comune di Genova", 
-   "name": "comune-di-genova", 
-   "url": "http://dati.comune.genova.it/data.json", 
-   "type": "harvest", 
-   "source_type": "dcat_json", 
-   "owner_org": "comune-di-genova", 
-   "frequency": "MANUAL"
-}

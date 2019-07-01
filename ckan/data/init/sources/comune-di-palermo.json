@@ -1,9 +1,0 @@
-{
-   "title": "Comune di Palermo", 
-   "name": "comune-di-palermo", 
-   "url": "https://opendata.comune.palermo.it/dcat/dcat.php ", 
-   "type": "harvest", 
-   "source_type": "dcat_rdf", 
-   "owner_org": "comune-di-palermo", 
-   "frequency": "MANUAL"
-}

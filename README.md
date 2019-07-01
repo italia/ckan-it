@@ -7,7 +7,7 @@ WARNING: this software is under development. It has been currently used only in 
 
 ## Container images details
 
-- [Ckan 2.6.7](https://github.com/ckan/ckan/) with following extensions:
+- [Ckan 2.6.7](https://github.com/italia/ckan/) with following extensions:
 
   - stats
   - view
@@ -15,7 +15,7 @@ WARNING: this software is under development. It has been currently used only in 
     - image_view
     - recline_view
   - datastore
-  - [spatial](https://github.com/ckan/ckanext-spatial/)
+  - [spatial](https://github.com/italia/ckanext-spatial/)
     - spatial_metadata
     - spatial_query
   - [harvest](https://github.com/ckan/ckanext-harvest/)
@@ -34,6 +34,8 @@ WARNING: this software is under development. It has been currently used only in 
     - dcatapit_csw_harvester
     - dcatapit_harvest_list
     - dcatapit_subcatalog_facets
+
+- ~~Datapusher 0.0.15~~ (WIP)
 
 - Solr 6.2
 
@@ -65,9 +67,9 @@ If you want to import data from all external sources we support, follow these ad
 
 WARNING: note that initial organizations and sources are loaded once from `ckan/data/init/` folder, if `orgs/` and `sources/` are empty next steps will fail. You can use the GUI to manually add new organizations and sources and then skip to the second step.
 
-1. Identify the name of the CKAN Container and run the following command: `containerid=$(docker ps | grep dati-ckan-docker_ckan | awk '{print $11}') && docker exec -it $containerid /ckan-harvest-init.sh` where in `$containerid` there is the name of the container as per `docker ps` command output
-2. Browse to [http://localhost:5000/harvest](http://localhost:5000/harvest) to check all imported sources
-3. Identify the name of the CKAN Container and run the following command: `containerid=$(docker ps | grep dati-ckan-docker_ckan | awk '{print $11}') && docker exec -it $containerid /periodic-harvest-run.sh && docker exec -it $containerid /periodic-harvester-joball.sh` where in `$containerid` there is the name of the container as per `docker ps` command output
+#1. Identify the name of the CKAN Container and run the following command: `containerid=$(docker ps | grep dati-ckan-docker_ckan | awk '{print $11}') && docker exec -it $containerid /ckan-harvest-init.sh` where in `$containerid` there is the name of the container as per `docker ps` command output
+1. Browse to [http://localhost:5000/harvest](http://localhost:5000/harvest) to check all available sources or add new sources
+2. Identify the name of the CKAN Container and run the following command: `containerid=$(docker ps | grep dati-ckan-docker_ckan | awk '{print $11}') && docker exec -it $containerid /periodic-harvest-run.sh && docker exec -it $containerid /periodic-harvester-joball.sh` where in `$containerid` there is the name of the container as per `docker ps` command output
 
 You can see logs during harvesting import with following command: `docker logs ckan -f`.
 

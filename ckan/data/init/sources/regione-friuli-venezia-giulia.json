@@ -1,9 +1,0 @@
-{
-   "title": "Regione Friuli Venezia Giulia", 
-   "name": "regione-friuli-venezia-giulia", 
-   "url": "https://www.dati.friuliveneziagiulia.it/data.json", 
-   "type": "harvest", 
-   "source_type": "dcat_json", 
-   "owner_org": "regione-friuli-venezia-giulia", 
-   "frequency": "MANUAL"
-}

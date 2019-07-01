@@ -1,9 +1,0 @@
-{
-   "title": "Regione Lombardia", 
-   "name": "regione-lombardia", 
-   "url": "http://supportsiss.lispa.it/opendata/catalogo_regione_lombardia.ttl", 
-   "type": "harvest", 
-   "source_type": "dcat_rdf", 
-   "owner_org": "regione-lombardia", 
-   "frequency": "MANUAL"
-}

@@ -8,7 +8,7 @@ services:
       name: ckan-solr
       io.rancher.container.pull_image: always
   ckan:
-    build: ./ckan
+    build: ./
     environment:
       CKAN_SITE_URL: http://localhost:5000
       CKAN_INI_PATH: /etc/ckan/default/ckan.ini

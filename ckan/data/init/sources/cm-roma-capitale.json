@@ -1,9 +1,0 @@
-{
-   "title": "CM Roma Capitale", 
-   "name": "cm-roma-capitale", 
-   "url": "http://www.opendata.cittametropolitanaroma.gov.it/data.json", 
-   "type": "harvest", 
-   "source_type": "dcat_json", 
-   "owner_org": "citta-metropolitana-di-roma-capitale", 
-   "frequency": "MANUAL"
-}
