@@ -35,10 +35,7 @@ services:
       - solr
 
   solr:
-    image: daf-ckan-solr:0.1.0
-    build:
-      context: ./solr
-      dockerfile: dockerfile
+    image: teamdigitale/daf-ckan-solr:0.1.0
     container_name: daf-ckan-solr
     stdin_open: true
     tty: true
