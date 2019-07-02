@@ -47,7 +47,7 @@ services:
     tty: true
 
   db:
-    image: geosolutionsit/dati-ckan-docker:postgresql-10.1
+    image: ckan/postgresql:latest
     container_name: daf-ckan-db
     environment:
       POSTGRES_USER: ckan

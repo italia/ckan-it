@@ -98,22 +98,19 @@ ADD ./ckanext-dcat/ $CKAN_HOME/src/ckanext-dcat/
 RUN pip install -e $CKAN_HOME/src/ckanext-dcat/
 RUN pip install -r $CKAN_HOME/src/ckanext-dcat/requirements.txt
 
-RUN pushd $CKAN_HOME/src \
-    && git clone "https://github.com/geosolutions-it/ckanext-dcatapit.git" \
-    && popd
+# Install ckanext-dcatapit
+RUN mkdir $CKAN_HOME/src/ckanext-dcatapit/
+ADD ./ckanext-dcatapit/ $CKAN_HOME/src/ckanext-dcatapit/
 RUN pip install -e $CKAN_HOME/src/ckanext-dcatapit/
 RUN pip install -r $CKAN_HOME/src/ckanext-dcatapit/dev-requirements.txt
 
 # Install ckanext-spatial
-RUN pushd $CKAN_HOME/src \
-    && git clone "https://github.com/geosolutions-it/ckanext-spatial.git" \
-    && cd ckanext-spatial \
-    && git checkout "188_clean_tags" \
-    && popd
+RUN mkdir $CKAN_HOME/src/ckanext-spatial/
+ADD ./ckanext-spatial/ $CKAN_HOME/src/ckanext-spatial/
 RUN pip install -e $CKAN_HOME/src/ckanext-spatial/
 RUN pip install -r $CKAN_HOME/src/ckanext-spatial/pip-requirements.txt
 
-# Install ckanext-spatial
+# Install ckanext-multilang
 RUN mkdir $CKAN_HOME/src/ckanext-multilang/
 ADD ./ckanext-multilang/ $CKAN_HOME/src/ckanext-multilang/
 RUN pip install -e $CKAN_HOME/src/ckanext-multilang/
