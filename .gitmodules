@@ -16,9 +16,6 @@
 [submodule "datapusher"]
 	path = datapusher
 	url = https://github.com/italia/datapusher.git
-[submodule "solr"]
-	path = solr
-	url = https://github.com/teamdigitale/daf-ckan-solr.git
 [submodule "ckan"]
 	path = ckan
 	url = https://github.com/italia/ckan.git
