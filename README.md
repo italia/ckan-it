@@ -24,7 +24,7 @@ The tools used in this repository are
 
 * **Redis** version 5.0.5. Redis is automatically pulled in as a dependency from its [official Docker repository](https://hub.docker.com/_/redis).
 
-* ~~Datapusher~~ (coming soon)
+* ~~Datapusher commit 0.0.15~~ (coming soon)
 
 ## Environment variables
 
@@ -98,7 +98,7 @@ Password: ckanpassword
 
 If you only want to run a CKAN instance and use it to manage and publish your own data, you can stop here. In a production environment you can install and setup a proxy server in front of CKAN with https support.
 
-WARNING: all data are stored in internal Docker volumes without persistence! In a production environment you should mount internal volumes on local folders updating the docker-compose configuration.
+WARNING: all data are stored in [Docker named volumes](https://success.docker.com/article/different-types-of-volumes)! In a production environment you should mount these volumes on local folders updating the [docker-compose configuration](https://docs.docker.com/compose/compose-file/compose-file-v2/#volumes) accordingly.
 
 To bring down the test environment and remove the containers use
 
@@ -139,18 +139,18 @@ So you can schedule a periodic run of the above script every 15 minutes with CRO
     - image_view
     - recline_view
   - datastore
-  - [spatial](https://github.com/italia/ckanext-spatial/)
+  - [spatial](https://github.com/italia/ckanext-spatial/) (commit c5c8451)
     - spatial_metadata
     - spatial_query
-  - [harvest](https://github.com/ckan/ckanext-harvest/)
+  - [harvest](https://github.com/ckan/ckanext-harvest/) (tag v1.1.4)
     - ckan_harvester
-  - [multilang](https://github.com/italia/ckanext-multilang/)
+  - [multilang](https://github.com/italia/ckanext-multilang/) (commit fa8da32)
     - multilang_harvester
-  - [dcat](https://github.com/ckan/ckanext-dcat/)
+  - [dcat](https://github.com/ckan/ckanext-dcat/) (tag v0.0.9)
     - dcat_rdf_harvester
     - dcat_json_harvester
     - dcat_json_interface
-  - [dcatapit](https://github.com/italia/ckanext-dcatapit/)
+  - [dcatapit](https://github.com/italia/ckanext-dcatapit/) (commit 48f352b)
     - dcatapit_pkg
     - dcatapit_org
     - dcatapit_config

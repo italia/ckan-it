@@ -33,12 +33,16 @@ services:
       - db
       - redis
       - solr
+    volumes:
+      - ckanlog:/var/log/ckan
 
   solr:
     image: teamdigitale/daf-ckan-solr:0.1.0
     container_name: daf-ckan-solr
     stdin_open: true
     tty: true
+    volumes:
+      - solrdb:/opt/solr/server/solr/ckan/data
 
   redis:
     image: redis:5.0.5
@@ -58,3 +62,10 @@ services:
       - 5432:5432/tcp
     stdin_open: true
     tty: true
+    volumes:
+      - pgsqldb:/var/lib/postgresql/data
+
+volumes:
+  pgsqldb:
+  solrdb:
+  ckanlog:
