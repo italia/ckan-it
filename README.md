@@ -45,11 +45,11 @@ WARNING: this software is under development. It has been currently used only in 
 
 If you want a CKAN instance up and running, follow these steps.
 
-1. Clone this repo: `git clone https://github.com/italia/dati-ckan-docker.git`
-2. Enter in created folder: `cd dati-ckan-docker`
+1. Clone this repo: `git clone https://github.com/italia/dati-ckan-docker.git` (if you want to clone the repo in a folder other than `dati-ckan-docker/` add the name you want after the previous command, ie. `git clone https://github.com/italia/dati-ckan-docker.git my_custom_folder`)
+2. Enter in created folder: `cd dati-ckan-docker/` (or the name you have chosen in previous step, ie. `cd my_custom_folder/`)
 3. Initialize submodules: `git submodule update --init --recursive`
 5. Run all containers: `docker-compose up -d`
-6. Identify the name of the CKAN Container and run the following command: `containerid=$(docker ps | grep dati-ckan-docker_ckan | awk '{print $11}') && docker exec -it $containerid /ckan-init.sh` where in `$containerid` there is the name of the container as per `docker ps` command output
+6. Identify the name of the CKAN Container and run the following command: `containerid=$(docker ps | grep ${PWD##*/}_ckan_1 | awk '{print $11}') && docker exec -it $containerid /ckan-init.sh` where in `$containerid` there is the name of the container as per `docker ps` command output
 
 The `/ckan-init.sh` script creates an admin user with credentials `ckanadmin:ckanpassword` and initialize the plugins.
 
