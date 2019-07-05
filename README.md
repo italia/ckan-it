@@ -59,7 +59,9 @@ If you only want to run a CKAN instance and use it to manage and publish your ow
 
 WARNING: all data are stored in internal Docker volumes without persistence! In a production environment you should mount internal volumes on local folders updating the docker-compose configuration.
 
-## Follow these steps to setup and run CKAN harvesting (optional)
+## Follow these steps to setup and run CKAN harvesting (optional and **DEPRECATED**)
+
+> WARNING: this feature will be dropped in next update!
 
 If you want to import data from all external sources we support, follow these additional steps.
 
