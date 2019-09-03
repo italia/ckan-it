@@ -1,21 +1,21 @@
-[submodule "ckan/ckan"]
-	path = ckan/ckan
-	url = https://github.com/ckan/ckan.git
-[submodule "ckan/ckanext-dcat"]
-	path = ckan/ckanext-dcat
-	url = https://github.com/ckan/ckanext-dcat.git
-[submodule "ckan/ckanext-spatial"]
-	path = ckan/ckanext-spatial
-	url = https://github.com/ckan/ckanext-spatial.git
-[submodule "ckan/ckanext-multilang"]
-	path = ckan/ckanext-multilang
-	url = https://github.com/italia/ckanext-multilang.git
-[submodule "ckan/ckanext-harvest"]
-	path = ckan/ckanext-harvest
-	url = https://github.com/ckan/ckanext-harvest.git
-[submodule "ckan/ckanext-dcatapit"]
-	path = ckan/ckanext-dcatapit
+[submodule "ckanext-dcat"]
+	path = ckanext-dcat
+	url = https://github.com/italia/ckanext-dcat.git
+[submodule "ckanext-dcatapit"]
+	path = ckanext-dcatapit
 	url = https://github.com/italia/ckanext-dcatapit.git
-[submodule "datapusher/datapusher"]
-	path = datapusher/datapusher
-	url = https://github.com/ckan/datapusher.git
+[submodule "ckanext-harvest"]
+	path = ckanext-harvest
+	url = https://github.com/italia/ckanext-harvest.git
+[submodule "ckanext-spatial"]
+	path = ckanext-spatial
+	url = https://github.com/italia/ckanext-spatial.git
+[submodule "ckanext-multilang"]
+	path = ckanext-multilang
+	url = https://github.com/italia/ckanext-multilang.git
+[submodule "datapusher"]
+	path = datapusher
+	url = https://github.com/italia/datapusher.git
+[submodule "ckan"]
+	path = ckan
+	url = https://github.com/italia/ckan.git

@@ -1,9 +1,0 @@
-{
-   "title": "Regione Toscana", 
-   "name": "regione-toscana", 
-   "url": "http://dati.toscana.it/catalog.rdf", 
-   "type": "harvest", 
-   "source_type": "dcat_rdf", 
-   "owner_org": "regione-toscana", 
-   "frequency": "MANUAL"
-}

@@ -1,43 +1,71 @@
 version: '2'
+
 services:
-  solr:
-    build: ./solr
-    stdin_open: true
-    tty: true
-    labels:
-      name: ckan-solr
-      io.rancher.container.pull_image: always
+
   ckan:
-    build: ./ckan
+    build:
+      context: ./
+      dockerfile: dockerfile
+    container_name: daf-ckan
+    image: daf-ckan
     environment:
+      CKAN_DEBUG: "false"
       CKAN_SITE_URL: http://localhost:5000
-      CKAN_INI_PATH: /etc/ckan/default/ckan.ini
+      CKAN_ADMIN_EMAIL: ckanadmin@mail.com
+      CKAN_ADMIN_USERNAME: ckanadmin
+      CKAN_ADMIN_PASSWORD: ckanpassword
+      CKAN_DB_HOST: db
+      CKAN_DB_PORT: 5432
+      CKAN_DB_USER: ckan
+      PGPASSWORD: ckan
       CKAN_SQLALCHEMY_URL: postgresql://ckan:ckan@db:5432/
+      CKAN_REDIS_HOST: redis
+      CKAN_REDIS_PORT: 6379
       CKAN_REDIS_URL: redis://redis:6379/
+      CKAN_SOLR_HOST: solr
+      CKAN_SOLR_PORT: 8983
       CKAN_SOLR_URL: http://solr:8983/solr/ckan
     stdin_open: true
-    entrypoint:
-    - /wait-for-services.sh
-    - /ckan-entrypoint.sh
     tty: true
-    links:
-    - db:db
-    - redis:redis
-    - solr:solr
     ports:
-    - 5000:5000/tcp
-    command:
-    - paster
-    - serve
-    - /etc/ckan/default/ckan.ini
-    labels:
-      name: ckan-core
-      io.rancher.container.pull_image: always
+      - 5000:5000/tcp
+    depends_on:
+      - db
+      - redis
+      - solr
+    volumes:
+      - ckanlog:/var/log/ckan
+
+  solr:
+    image: teamdigitale/daf-ckan-solr:0.1.0
+    container_name: daf-ckan-solr
+    stdin_open: true
+    tty: true
+    volumes:
+      - solrdb:/opt/solr/server/solr/ckan/data
+
   redis:
     image: redis:5.0.5
+    container_name: daf-ckan-redis
     stdin_open: true
     tty: true
+
   db:
     image: ckan/postgresql:latest
+    container_name: daf-ckan-db
+    environment:
+      POSTGRES_USER: ckan
+      POSTGRES_PASSWORD: ckan
+      POSTGRES_DB: ckan
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - 5432:5432/tcp
     stdin_open: true
     tty: true
+    volumes:
+      - pgsqldb:/var/lib/postgresql/data
+
+volumes:
+  pgsqldb:
+  solrdb:
+  ckanlog:
