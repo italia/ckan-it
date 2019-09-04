@@ -37,7 +37,10 @@ services:
       - ckanlog:/var/log/ckan
 
   solr:
-    image: teamdigitale/daf-ckan-solr:0.1.0
+    build:
+      context: ckan
+      dockerfile: contrib/docker/solr/Dockerfile
+    image: teamdigitale/daf-ckan-solr:6.6.2
     container_name: daf-ckan-solr
     stdin_open: true
     tty: true
@@ -51,7 +54,7 @@ services:
     tty: true
 
   db:
-    image: ckan/postgresql:latest
+    image: mdillon/postgis:11
     container_name: daf-ckan-db
     environment:
       POSTGRES_USER: ckan
