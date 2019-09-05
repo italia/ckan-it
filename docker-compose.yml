@@ -6,8 +6,8 @@ services:
     build:
       context: ./
       dockerfile: dockerfile
+    image: teamdigitale/daf-ckan:2.8.2
     container_name: daf-ckan
-    image: daf-ckan
     environment:
       CKAN_DEBUG: "false"
       CKAN_SITE_URL: http://localhost:5000
