@@ -6,8 +6,8 @@ services:
     build:
       context: ./
       dockerfile: dockerfile
-    container_name: daf-ckan
-    image: daf-ckan
+    image: teamdigitale/pdnd-ckan:0.1.1
+    container_name: pdnd-ckan
     environment:
       CKAN_DEBUG: "false"
       CKAN_SITE_URL: http://localhost:5000
@@ -37,8 +37,8 @@ services:
       - ckanlog:/var/log/ckan
 
   solr:
-    image: teamdigitale/daf-ckan-solr:0.1.0
-    container_name: daf-ckan-solr
+    image: teamdigitale/pdnd-ckan-solr:0.1.0
+    container_name: pdnd-ckan-solr
     stdin_open: true
     tty: true
     volumes:
@@ -46,13 +46,13 @@ services:
 
   redis:
     image: redis:5.0.5
-    container_name: daf-ckan-redis
+    container_name: pdnd-ckan-redis
     stdin_open: true
     tty: true
 
   db:
     image: ckan/postgresql:latest
-    container_name: daf-ckan-db
+    container_name: pdnd-ckan-db
     environment:
       POSTGRES_USER: ckan
       POSTGRES_PASSWORD: ckan
