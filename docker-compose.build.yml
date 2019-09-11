@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+
+  ckan:
+    build:
+      context: ./
+      dockerfile: dockerfile
+
