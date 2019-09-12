@@ -32,7 +32,7 @@ The tools used in this repository are
 
 ## Environment variables
 
-The following environment variables are mandatory and should be set in order to deploy CKAN. The `docker-compose.yaml` file in this repository applies some exemplar values, to be used for demos and local tests.
+The following environment variables are mandatory and should be set in order to deploy CKAN. The `docker-compose.yml` file in this repository applies some exemplar values, to be used for demos and local tests.
 
 ### General variables
 
@@ -74,22 +74,21 @@ The following environment variables are mandatory and should be set in order to 
 
 * CKAN_SOLR_URL *(format: http://{CKAN_SOLR_HOST}:{CKAN_SOLR_PORT}/solr/ckan)* - The full URL of the Solr service.
 
-## How to build and test CKAN
+## How to run CKAN
 
 In this repository, CKAN and its related tools are redistributed as a set of Docker containers interacting with one each other.
 
-The `dockerfile` and the `docker-compose.yaml` files are in the root of this repository.
+The `dockerfile` and the `docker-compose.yml` files are in the root of this repository.
 
-> NOTE: the `docker-compose.yaml` file sets different environment variables that could be used to adapt and customized many platform functionalities.
+> NOTE: the `docker-compose.yml` file sets different environment variables that could be used to adapt and customized many platform functionalities.
 
 If you want a CKAN instance up and running, follow these steps.
 
 1. Clone this repo: `git clone https://github.com/italia/dati-ckan-docker.git` (if you want to clone the repo in a folder other than `dati-ckan-docker/` add the name you want after the previous command, ie. `git clone https://github.com/italia/dati-ckan-docker.git my_custom_folder`)
 2. Enter in created folder: `cd dati-ckan-docker/` (or the name you have chosen in previous step, ie. `cd my_custom_folder/`)
-3. Initialize submodules: `git submodule update --init --recursive`
-4. Run all containers: `docker-compose up -d` (if you want to check logs run `docker-compose logs -f`)
+3. Pull and run all containers: `docker-compose up`
 
-Now you can open the CKAN home [http://localhost:5000](http://localhost:5000) and login with the provided credentials.
+After a while you can open the CKAN home [http://localhost:5000](http://localhost:5000) and login with the provided credentials.
 
 The following default credentials can be used to access the portal
 
@@ -104,11 +103,17 @@ If you only want to run a CKAN instance and use it to manage and publish your ow
 
 WARNING: all data are stored in [Docker named volumes](https://success.docker.com/article/different-types-of-volumes)! In a production environment you should mount these volumes on local folders updating the [docker-compose configuration](https://docs.docker.com/compose/compose-file/compose-file-v2/#volumes) accordingly.
 
-To bring down the test environment and remove the containers use
+To bring down the test environment and remove the containers use `docker-compose down`.
 
-```shell
-docker-compose down
-```
+## How to build and test CKAN
+
+If you want to build local images instead of pull them from Dockerhub, ie. for testing pourpose, you need some extra steps.
+
+1. Clone this repo: `git clone https://github.com/italia/dati-ckan-docker.git` (if you want to clone the repo in a folder other than `dati-ckan-docker/` add the name you want after the previous command, ie. `git clone https://github.com/italia/dati-ckan-docker.git my_custom_folder`)
+2. Enter in created folder: `cd dati-ckan-docker/` (or the name you have chosen in previous step, ie. `cd my_custom_folder/`)
+3. Initialize submodules: `git submodule update --init --recursive`
+4. Build images: `docker-compose -f docker-compose.yml -f docker-compose.build.yml build`
+5. Run all containers using built images: `docker-compose up -d` (if you want to check logs run `docker-compose logs -f`)
 
 ### Follow these steps to setup and run CKAN harvesting (optional)
 
