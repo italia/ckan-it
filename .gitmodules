@@ -19,3 +19,6 @@
 [submodule "ckan"]
 	path = ckan
 	url = https://github.com/italia/ckan.git
+[submodule "solr"]
+	path = solr
+	url = https://github.com/teamdigitale/pdnd-ckan-solr.git

@@ -6,4 +6,10 @@ services:
     build:
       context: ./
       dockerfile: dockerfile
+    image: ckan:dev
 
+  solr:
+    build:
+      context: ./solr
+      dockerfile: dockerfile
+    image: ckan-solr:dev
