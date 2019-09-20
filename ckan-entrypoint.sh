@@ -111,6 +111,7 @@ ckan_serve () {
 
 wait_for_services
 
+# If config file does not exist, create it
 if [ ! -e "${config}" ]; then
   write_config
 fi

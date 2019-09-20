@@ -21,6 +21,8 @@ RUN yum -y install gdal-python python-pip python-imaging python-virtualenv \
 RUN yum -y install gettext
 RUN yum -y install wget
 
+RUN yum -y groupinstall "Development Tools"
+
 RUN wget http://download.redis.io/redis-stable.tar.gz \
     && tar xvzf redis-stable.tar.gz \
     && pushd redis-stable \
@@ -136,12 +138,8 @@ RUN chmod +x /harvest_fetch_and_gather.sh
 ADD ./periodic-harvest.sh /
 RUN chmod +x /periodic-harvest.sh
 
-# Volumes
-VOLUME ["/etc/ckan/default"]
-VOLUME ["/var/lib/ckan"]
-
 # Set default user and work directory
-USER ckan
+# USER ckan
 WORKDIR "${CKAN_CONFIG}"
 
 EXPOSE 5000
