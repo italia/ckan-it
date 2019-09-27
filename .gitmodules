@@ -22,3 +22,6 @@
 [submodule "solr"]
 	path = solr
 	url = https://github.com/teamdigitale/pdnd-ckan-solr.git
+[submodule "data/init/harvesters"]
+	path = data/init/harvesters
+	url = https://github.com/italia/ckan-it-harvesters.git
