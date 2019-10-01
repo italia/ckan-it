@@ -69,7 +69,7 @@ wget "https://raw.githubusercontent.com/italia/daf-ontologie-vocabolari-controll
 paster --plugin=ckanext-dcatapit vocabulary load --filename "/tmp/theme-subtheme-mapping.rdf" --name subthemes --config "${config}" "$path_to_eurovoc"
 
 add_groups
-if [ -d "${CKAN_HOME}/data/init/harvesters/" ]; then
+if [ "${CKAN_HARVEST}" = "true" -a -d "${CKAN_HOME}/data/init/harvesters/" ]; then
     add_orgs
     add_sources
 fi

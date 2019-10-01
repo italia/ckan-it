@@ -38,6 +38,8 @@ The following environment variables are mandatory and should be set in order to 
 
 * CKAN_DEBUG *(format: {"true"|"false"})* - Whether to activate or not the debug log messages. It should always be false for production environments.
 
+* CKAN_HARVEST *(format: {"true"|"false"})* - Whether to activate or not the built-in harvesters. It should be false if you want to build your own catalog.
+
 * CKAN_SITE_URL - The base URL of your CKAN deployment.
 
 * CKAN_ADMIN_EMAIL - The email address of the local admin user.
@@ -84,8 +86,8 @@ The `dockerfile` and the `docker-compose.yml` files are in the root of this repo
 
 If you want a CKAN instance up and running, follow these steps.
 
-1. Clone this repo: `git clone https://github.com/italia/dati-ckan-docker.git` (if you want to clone the repo in a folder other than `dati-ckan-docker/` add the name you want after the previous command, ie. `git clone https://github.com/italia/dati-ckan-docker.git my_custom_folder`)
-2. Enter in created folder: `cd dati-ckan-docker/` (or the name you have chosen in previous step, ie. `cd my_custom_folder/`)
+1. Clone this repo: `git clone https://github.com/italia/ckan-it.git` (if you want to clone the repo in a folder other than `ckan-it/` add the name you want after the previous command, ie. `git clone https://github.com/italia/ckan-it.git my_custom_folder`)
+2. Enter in created folder: `cd ckan-it/` (or the name you have chosen in previous step, ie. `cd my_custom_folder/`)
 3. Pull and run all containers: `docker-compose up`
 
 After a while you can open the CKAN home [http://localhost:5000](http://localhost:5000) and login with the provided credentials.
@@ -109,36 +111,42 @@ To bring down the test environment and remove the containers use `docker-compose
 
 If you want to build local images instead of pull them from Dockerhub, ie. for testing pourpose, you need some extra steps.
 
-1. Clone this repo: `git clone https://github.com/italia/dati-ckan-docker.git` (if you want to clone the repo in a folder other than `dati-ckan-docker/` add the name you want after the previous command, ie. `git clone https://github.com/italia/dati-ckan-docker.git my_custom_folder`)
-2. Enter in created folder: `cd dati-ckan-docker/` (or the name you have chosen in previous step, ie. `cd my_custom_folder/`)
-3. Initialize submodules: `git submodule update --init --recursive`
-4. Build images: `docker-compose -f docker-compose.yml -f docker-compose.build.yml build`
-5. Run all containers using built images: `docker-compose up -d` (if you want to check logs run `docker-compose logs -f`)
+1. Clone this repo: `git clone https://github.com/italia/ckan-it.git` (if you want to clone the repo in a folder other than `ckan-it/` add the name you want after the previous command, ie. `git clone https://github.com/italia/ckan-it.git my_custom_folder`)
+2. Enter in created folder: `cd ckan-it/` (or the name you have chosen in previous step, ie. `cd my_custom_folder/`)
+3. Change working branch if needed: `git checkout branch-name`
+4. Initialize submodules: `git submodule update --init --recursive`
+5. Build images: `docker-compose -f docker-compose.yml -f docker-compose.build.yml build`
+6. Run all containers using built images: `docker-compose up -d` (if you want to check logs run `docker-compose logs -f`)
 
 ### Follow these steps to setup and run CKAN harvesting (optional)
 
 If you want to import data from external sources, follow these additional steps.
 
-WARNING: note that no organizations and sources are initially loaded, but you can use the GUI to manually add new organizations and sources before next steps.
+WARNING: note that if `CKAN_HARVEST` variable in docker-compose is not set to `"true"` no organizations and sources are initially loaded, so you can use the GUI to manually add new organizations and sources of your choice before next steps.
 
-1. Browse to [http://localhost:5000/harvest](http://localhost:5000/harvest) to check all imported sources
-2. Identify the name of the CKAN Container and run the following command: `containerid=$(docker ps | grep dati-ckan-docker_ckan | awk '{print $11}') && docker exec -it $containerid /periodic-harvest-run.sh && docker exec -it $containerid /periodic-harvester-joball.sh` where in `$containerid` there is the name of the container as per `docker ps` command output
+1. Browse to [http://localhost:5000/harvest](http://localhost:5000/harvest) to check all available sources
+2. Identify the name of the CKAN Container and run the following command: `docker exec -it pdnd-ckan /ckan-harvest.sh`
 
 You can see logs during harvesting import with following command: `docker logs ckan -f`.
 
 ### Run CKAN periodic harvesting
 
-Schedule a CRON job on the host machine to run the `/periodic-harvest.sh` script at the root of the file system of the CKAN container.
+Schedule a CRON job on the host machine to run the `/ckan-harvest.sh` script at the root of the file system of the CKAN container.
 
 How to do this really depends on how you run the containers. When running containers with docker-compose for instance we did this by getting the container id and using `docker-exec` to run a command inside the container, as follows:
+`docker exec -it pdnd-ckan /ckan-harvest.sh 2>&1 /var/log/periodic-harvest.out`
 
-```
-containerid=`docker ps | grep dati-ckan-docker_ckan | awk '{print $11}'`
-docker exec -it $containerid /periodic-harvest-run.sh 2>&1 /var/log/periodic-harvest-run.out
-docker exec -it $containerid /periodic-harvester-joball.sh 2>&1 /var/log/periodic-harvest-joball.out
-```
+So you can schedule a periodic run of the above script, ie. every hour, with CRON on the host machine.
 
-So you can schedule a periodic run of the above script every 15 minutes with CRON on the host machine.
+### Pre-load all organizations and sources
+
+The [italia/ckan-it-harvesters](https://github.com/italia/ckan-it-harvesters) repo contains all sources harvested by the national catalog of the PDND.
+If you want to clone it in your environment you must follow some additional steps:
+
+- Check if `data/init/harvesters` folder exists, if not add it running `git submodule add https://github.com/italia/ckan-it-harvesters data/init/harvesters`
+- Add `CKAN_HARVEST="true"` environment variable to the ckan service in `docker-compose.yml` (ie. see `docker-compose.harvest.yml`)
+- Wait for organizations and harvest sources loading, the run `docker exec -it pdnd-ckan /ckan-harvest.sh`
+- Follow previous section to setup a periodic harvesting
 
 ## CKAN 2.6.7 extensions reference
 
@@ -172,4 +180,4 @@ So you can schedule a periodic run of the above script every 15 minutes with CRO
 
 Contributions are welcome. Feel free to open issues and submit a pull request at any time!
 
-This repository is very specific to the PDND project that could be used as an example. Meanwhile, the community is working on an generic, [redistributable version](https://github.com/italia/dati-ckan-docker).
+This repository is very specific to the PDND project that could be used as an example. Meanwhile, the community is working on an generic, [redistributable version](https://github.com/italia/ckan-it).

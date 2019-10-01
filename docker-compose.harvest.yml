@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+
+  ckan:
+    environment:
+      CKAN_HARVEST: "true"

@@ -91,7 +91,7 @@ init_db () {
   paster --plugin=ckanext-dcatapit vocabulary initdb -c "${config}"
 
   # Setup multilang database
-  paster --plugin=ckanext-multilang multilangdb initdb --config="${config}"
+  paster --plugin=ckanext-multilang multilangdb initdb -c "${config}"
 }
 
 harvesting () {
