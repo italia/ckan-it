@@ -10,5 +10,4 @@ services:
   solr:
     build:
       context: ./solr
-      dockerfile: dockerfile
     image: ckan-it-solr:dev
