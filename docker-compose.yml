@@ -3,8 +3,8 @@ version: '2'
 services:
 
   ckan:
-    image: teamdigitale/pdnd-ckan:0.1.1
-    container_name: pdnd-ckan
+    image: italia/ckan-it:2.6.7-1
+    container_name: italia-ckan-it
     environment:
       CKAN_DEBUG: "false"
       CKAN_SITE_URL: http://localhost:5000
@@ -34,8 +34,8 @@ services:
       - ckanlog:/var/log/ckan
 
   solr:
-    image: teamdigitale/pdnd-ckan-solr:0.1.0
-    container_name: pdnd-ckan-solr
+    image: italia/ckan-it-solr:2.3.0-1
+    container_name: italia-ckan-it-solr
     stdin_open: true
     tty: true
     volumes:
@@ -43,13 +43,13 @@ services:
 
   redis:
     image: redis:5.0.5
-    container_name: pdnd-ckan-redis
+    container_name: italia-ckan-it-redis
     stdin_open: true
     tty: true
 
   db:
     image: ckan/postgresql:latest
-    container_name: pdnd-ckan-db
+    container_name: italia-ckan-it-db
     environment:
       POSTGRES_USER: ckan
       POSTGRES_PASSWORD: ckan
