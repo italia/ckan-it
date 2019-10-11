@@ -91,7 +91,7 @@ init_db () {
   paster --plugin=ckanext-dcatapit vocabulary initdb -c "${config}"
 
   # Setup multilang database
-  paster --plugin=ckanext-multilang multilangdb initdb --config="${config}"
+  paster --plugin=ckanext-multilang multilangdb initdb -c "${config}"
 }
 
 harvesting () {
@@ -111,6 +111,7 @@ ckan_serve () {
 
 wait_for_services
 
+# If config file does not exist, create it
 if [ ! -e "${config}" ]; then
   write_config
 fi

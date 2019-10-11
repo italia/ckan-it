@@ -19,6 +19,9 @@
 [submodule "ckan"]
 	path = ckan
 	url = https://github.com/italia/ckan.git
+[submodule "data/init/harvesters"]
+	path = data/init/harvesters
+	url = https://github.com/italia/ckan-it-harvesters.git
 [submodule "solr"]
 	path = solr
-	url = git@github.com:teamdigitale/pdnd-ckan-solr.git
+	url = https://github.com/italia/ckan-it-solr.git

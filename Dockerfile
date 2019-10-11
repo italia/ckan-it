@@ -21,6 +21,8 @@ RUN yum -y install gdal-python python-pip python-imaging python-virtualenv \
 RUN yum -y install gettext
 RUN yum -y install wget
 
+RUN yum -y groupinstall "Development Tools"
+
 RUN wget http://download.redis.io/redis-stable.tar.gz \
     && tar xvzf redis-stable.tar.gz \
     && pushd redis-stable \
@@ -34,23 +36,30 @@ RUN wget http://download.redis.io/redis-stable.tar.gz \
 RUN pip install --upgrade pip
 
 # Setup ckan Directory
-RUN mkdir -p $CKAN_HOME
-RUN mkdir -p $CKAN_LOG_DIR
-RUN mkdir -p $CKAN_CONFIG
-RUN mkdir -p $CKAN_STORAGE_PATH
+RUN mkdir -p "${CKAN_HOME}"
+RUN mkdir -p "${CKAN_LOG_DIR}"
+RUN mkdir -p "${CKAN_CONFIG}"
+RUN mkdir -p "${CKAN_STORAGE_PATH}"
 
 # Add CKAN source code
-RUN mkdir -p $CKAN_HOME/src/ckan/
-ADD ./ckan $CKAN_HOME/src/ckan/
+RUN mkdir -p "${CKAN_HOME}/src/ckan/"
+ADD ./ckan ${CKAN_HOME}/src/ckan/
 
 # Add ckan user
 RUN useradd --home "${CKAN_HOME}" --shell /bin/bash ckan
 
 # Set permissions to CKAN folders
-RUN chown -R ckan:ckan $CKAN_HOME
-RUN chown -R ckan:ckan $CKAN_LOG_DIR
-RUN chown -R ckan:ckan $CKAN_CONFIG
-RUN chown -R ckan:ckan $CKAN_STORAGE_PATH
+# Fix folders' owners and permissions
+RUN chown ckan:ckan "${CKAN_HOME}" -R \
+    && chown ckan:ckan "${CKAN_CONFIG}" -R \
+    && chown ckan:ckan "${CKAN_LOG_DIR}" -R \
+    && chown ckan:ckan "${CKAN_STORAGE_PATH}" -R
+
+RUN chmod 755 "${CKAN_HOME}" -R \
+    && chmod 755 "${CKAN_CONFIG}" -R \
+    && chmod 755 "${CKAN_LOG_DIR}" -R \
+    && chmod 755 "${CKAN_STORAGE_PATH}" -R
+
 
 # Temporary fix for dependencies
 RUN pip install pytz diagnostics
@@ -70,58 +79,50 @@ RUN pip install -r "${CKAN_HOME}/src/ckan/requirements.txt"
 # Install CKAN
 RUN pip install -e "${CKAN_HOME}/src/ckan" #egg=ckan
 
-# DCATAPIT theme to group mapping file
-ADD ./data/config/theme_to_group.ini $CKAN_CONFIG
-RUN chmod 666 $CKAN_CONFIG/theme_to_group.ini
-
-# CKAN group to DCATAPIT theme mapping file
-ADD ./data/config/topics.json $CKAN_CONFIG
-RUN chmod 666 $CKAN_CONFIG/topics.json
-
-# Copy various data and initialization files
-RUN mkdir $CKAN_HOME/data/
-ADD ./data $CKAN_HOME/data/
-
-# Link to who.ini
-RUN ln -s ${CKAN_HOME}/src/ckan/ckan/config/who.ini ${CKAN_CONFIG}/who.ini
-
 # Install ckanext-harvest
-RUN mkdir $CKAN_HOME/src/ckanext-harvest/
-ADD ./ckanext-harvest/ $CKAN_HOME/src/ckanext-harvest/
-RUN pip install -e $CKAN_HOME/src/ckanext-harvest/
-RUN pip install -r $CKAN_HOME/src/ckanext-harvest/pip-requirements.txt
-RUN pip install -r $CKAN_HOME/src/ckanext-harvest/dev-requirements.txt
+RUN mkdir "${CKAN_HOME}/src/ckanext-harvest/"
+ADD ./ckanext-harvest/ ${CKAN_HOME}/src/ckanext-harvest/
+RUN pip install -e "${CKAN_HOME}/src/ckanext-harvest/"
+RUN pip install -r "${CKAN_HOME}/src/ckanext-harvest/pip-requirements.txt"
+RUN pip install -r "${CKAN_HOME}/src/ckanext-harvest/dev-requirements.txt"
 
 # Install ckanext-dcat
-RUN mkdir $CKAN_HOME/src/ckanext-dcat/
-ADD ./ckanext-dcat/ $CKAN_HOME/src/ckanext-dcat/
-RUN pip install -e $CKAN_HOME/src/ckanext-dcat/
-RUN pip install -r $CKAN_HOME/src/ckanext-dcat/requirements.txt
+RUN mkdir "${CKAN_HOME}/src/ckanext-dcat/"
+ADD ./ckanext-dcat/ ${CKAN_HOME}/src/ckanext-dcat/
+RUN pip install -e "${CKAN_HOME}/src/ckanext-dcat/"
+RUN pip install -r "${CKAN_HOME}/src/ckanext-dcat/requirements.txt"
 
 # Install ckanext-dcatapit
-RUN mkdir $CKAN_HOME/src/ckanext-dcatapit/
-ADD ./ckanext-dcatapit/ $CKAN_HOME/src/ckanext-dcatapit/
-RUN pip install -e $CKAN_HOME/src/ckanext-dcatapit/
-RUN pip install -r $CKAN_HOME/src/ckanext-dcatapit/dev-requirements.txt
+RUN mkdir "${CKAN_HOME}/src/ckanext-dcatapit/"
+ADD ./ckanext-dcatapit/ ${CKAN_HOME}/src/ckanext-dcatapit/
+RUN pip install -e "${CKAN_HOME}/src/ckanext-dcatapit/"
+RUN pip install -r "${CKAN_HOME}/src/ckanext-dcatapit/dev-requirements.txt"
 
 # Install ckanext-spatial
-RUN mkdir $CKAN_HOME/src/ckanext-spatial/
-ADD ./ckanext-spatial/ $CKAN_HOME/src/ckanext-spatial/
-RUN pip install -e $CKAN_HOME/src/ckanext-spatial/
-RUN pip install -r $CKAN_HOME/src/ckanext-spatial/pip-requirements.txt
+RUN mkdir "${CKAN_HOME}/src/ckanext-spatial/"
+ADD ./ckanext-spatial/ ${CKAN_HOME}/src/ckanext-spatial/
+RUN pip install -e "${CKAN_HOME}/src/ckanext-spatial/"
+RUN pip install -r "${CKAN_HOME}/src/ckanext-spatial/pip-requirements.txt"
 
 # Install ckanext-multilang
-RUN mkdir $CKAN_HOME/src/ckanext-multilang/
-ADD ./ckanext-multilang/ $CKAN_HOME/src/ckanext-multilang/
-RUN pip install -e $CKAN_HOME/src/ckanext-multilang/
+RUN mkdir "${CKAN_HOME}/src/ckanext-multilang/"
+ADD ./ckanext-multilang/ ${CKAN_HOME}/src/ckanext-multilang/
+RUN pip install -e "${CKAN_HOME}/src/ckanext-multilang/"
 
-RUN chown ckan:ckan "${CKAN_HOME}" -R \
-    && chown ckan:ckan "${CKAN_CONFIG}" -R \
-    && chown ckan:ckan "${CKAN_STORAGE_PATH}" -R
+# DCATAPIT theme to group mapping file
+ADD ./data/config/theme_to_group.ini ${CKAN_CONFIG}
+RUN chmod 666 "${CKAN_CONFIG}/theme_to_group.ini"
 
-RUN chmod 755 "${CKAN_HOME}" -R \
-    && chmod 755 "${CKAN_CONFIG}" -R \
-    && chmod 755 "${CKAN_STORAGE_PATH}" -R
+# CKAN group to DCATAPIT theme mapping file
+ADD ./data/config/topics.json ${CKAN_CONFIG}
+RUN chmod 666 "${CKAN_CONFIG}/topics.json"
+
+# Copy various data and initialization files
+RUN mkdir "${CKAN_HOME}/data/"
+ADD ./data ${CKAN_HOME}/data/
+
+# Link to who.ini
+RUN ln -s "${CKAN_HOME}/src/ckan/ckan/config/who.ini" "${CKAN_CONFIG}/who.ini"
 
 # Setup entrypoint
 COPY ./ckan-entrypoint.sh /
@@ -133,15 +134,11 @@ ADD ./ckan-init.sh /
 RUN chmod +x /ckan-init.sh
 ADD ./harvest_fetch_and_gather.sh /
 RUN chmod +x /harvest_fetch_and_gather.sh
-ADD ./periodic-harvest.sh /
-RUN chmod +x /periodic-harvest.sh
-
-# Volumes
-VOLUME ["/etc/ckan/default"]
-VOLUME ["/var/lib/ckan"]
+ADD ./ckan-harvest.sh /
+RUN chmod +x /ckan-harvest.sh
 
 # Set default user and work directory
-USER ckan
+# USER ckan
 WORKDIR "${CKAN_CONFIG}"
 
 EXPOSE 5000
