@@ -5,9 +5,9 @@ services:
   ckan:
     build:
       context: ./
-    image: ckan-it:dev
+    image: ckan-it:2.6.8-dev.1
 
   solr:
     build:
       context: ./solr
-    image: ckan-it-solr:dev
+    image: ckan-it-solr:2.3.0-dev.1
