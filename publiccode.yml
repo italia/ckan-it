@@ -4,8 +4,8 @@
 
 publiccodeYmlVersion: '0.2'
 name: 'CKAN for Italian Open Data'
-releaseDate: '2018-08-28'
-url: 'https://github.com/italia/dati-ckan-docker.git'
+releaseDate: '2019-10-14'
+url: 'https://github.com/italia/ckan-it.git'
 isBasedOn: 'https://github.com/ckan/ckan.git'
 softwareVersion: dev
 developmentStatus: development
@@ -51,8 +51,8 @@ description:
     longDescription: >
       This project provides everything you need to run CKAN plus a set of 
       extensions for supporting Italian open data. You can run the full stack
-      using docker-compose to orchestrate four containers providing CKAN 2.6.4, Solr 6.2,
-      Redis 4.0.2, PostgreSQL 10.1.
+      using docker-compose to orchestrate four containers providing CKAN 2.6.8, Solr 6.2,
+      Redis 5.0.5, PostgreSQL 10.1.
       
       "Warning: this product is under active development and it is to be considered unstable."
       It has been currently used only in testing environments,
