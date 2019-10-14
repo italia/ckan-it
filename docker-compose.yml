@@ -3,7 +3,7 @@ version: '2'
 services:
 
   ckan:
-    image: italia/ckan-it:2.6.8-1
+    image: italia/ckan-it:2.6.8-2
     container_name: italia-ckan-it
     environment:
       CKAN_DEBUG: "false"

@@ -158,18 +158,18 @@ The following environment variables are mandatory and should be set in order to 
     - image_view
     - recline_view
   - datastore
-  - [spatial](https://github.com/italia/ckanext-spatial/) (tav 2.6.8-1)
+  - [spatial](https://github.com/italia/ckanext-spatial/) (tav 2.6.8-2)
     - spatial_metadata
     - spatial_query
-  - [harvest](https://github.com/ckan/ckanext-harvest/) (tag v1.1.2)
+  - [harvest](https://github.com/ckan/ckanext-harvest/) (tag v1.1.1)
     - ckan_harvester
-  - [multilang](https://github.com/italia/ckanext-multilang/) (tag 2.6.8-1)
+  - [multilang](https://github.com/italia/ckanext-multilang/) (tag 2.6.8-2)
     - multilang_harvester
   - [dcat](https://github.com/ckan/ckanext-dcat/) (tag v0.0.9)
     - dcat_rdf_harvester
     - dcat_json_harvester
     - dcat_json_interface
-  - [dcatapit](https://github.com/italia/ckanext-dcatapit/) (tag 2.6.8-1)
+  - [dcatapit](https://github.com/italia/ckanext-dcatapit/) (tag 2.6.8-2)
     - dcatapit_pkg
     - dcatapit_org
     - dcatapit_config
