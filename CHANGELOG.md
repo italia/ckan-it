@@ -3,7 +3,7 @@
 Version number follows the semantic versioning specifications:
 X.Y.Z-P where X.Y.Z is equal to CKAN official release and P is our custom distribution version.
 
-## 2.7.8-1 2019-10-14
+## 2.6.8-1 2019-10-14
 
 * upgrade CKAN from v2.6.7 to v2.6.8
 * downgrade ckanext-harvest from v1.1.4 to v1.1.2 (fix issues in catalogues list)

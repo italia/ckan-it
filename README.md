@@ -20,7 +20,7 @@ The tools used in this repository are
 
 ## CKAN components
 
-* **CKAN** version 2.6.7 with the extensions listed at the end of this document.
+* **CKAN** version 2.6.8 with the extensions listed at the end of this document.
 
 * **Solr** version 6.2, packaged for CKAN and with some customizations. Solr code is available [here](https://github.com/teamdigitale/daf-ckan-solr).
 
@@ -150,7 +150,7 @@ The following environment variables are mandatory and should be set in order to 
 
 * CKAN_SOLR_URL *(format: http://{CKAN_SOLR_HOST}:{CKAN_SOLR_PORT}/solr/ckan)* - The full URL of the Solr service.
 
-## CKAN 2.6.7 extensions reference
+## CKAN 2.6.8 extensions reference
 
   - stats
   - view
@@ -158,18 +158,18 @@ The following environment variables are mandatory and should be set in order to 
     - image_view
     - recline_view
   - datastore
-  - [spatial](https://github.com/italia/ckanext-spatial/) (commit c5c8451)
+  - [spatial](https://github.com/italia/ckanext-spatial/) (tav 2.6.8-1)
     - spatial_metadata
     - spatial_query
-  - [harvest](https://github.com/ckan/ckanext-harvest/) (tag v1.1.4)
+  - [harvest](https://github.com/ckan/ckanext-harvest/) (tag v1.1.2)
     - ckan_harvester
-  - [multilang](https://github.com/italia/ckanext-multilang/) (commit fa8da32)
+  - [multilang](https://github.com/italia/ckanext-multilang/) (tag 2.6.8-1)
     - multilang_harvester
   - [dcat](https://github.com/ckan/ckanext-dcat/) (tag v0.0.9)
     - dcat_rdf_harvester
     - dcat_json_harvester
     - dcat_json_interface
-  - [dcatapit](https://github.com/italia/ckanext-dcatapit/) (commit 48f352b)
+  - [dcatapit](https://github.com/italia/ckanext-dcatapit/) (tag 2.6.8-1)
     - dcatapit_pkg
     - dcatapit_org
     - dcatapit_config
@@ -181,5 +181,3 @@ The following environment variables are mandatory and should be set in order to 
 ## How to contribute
 
 Contributions are welcome. Feel free to open issues and submit a pull request at any time!
-
-This repository is very specific to the PDND project that could be used as an example. Meanwhile, the community is working on an generic, [redistributable version](https://github.com/italia/ckan-it).
