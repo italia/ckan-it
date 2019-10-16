@@ -65,7 +65,7 @@ If you want to build local images instead of pull them from Dockerhub, ie. for t
 3. Change working branch if needed: `git checkout branch-name`
 4. Initialize submodules: `git submodule update --init --recursive`
 5. Build images: `docker-compose -f docker-compose.yml -f docker-compose.build.yml build`
-6. Run all containers using built images: `docker-compose up -d` (if you want to check logs run `docker-compose logs -f`)
+6. Run all containers using built images: `docker-compose -f docker-compose.yml -f docker-compose.build.yml up -d` (if you want to check logs run `docker-compose logs -f`)
 
 ## CKAN-IT harvesting (optional)
 
@@ -89,17 +89,25 @@ How to do this really depends on how you run the containers. When running contai
 
 So you can schedule a periodic run of the above script, ie. every hour, with CRON on the host machine and save logs.
 
-### Pre-load all organizations and sources
+### Pre-load organizations and sources
 
-The [italia/ckan-it-harvesters](https://github.com/italia/ckan-it-harvesters) repository contains all sources harvested by the national catalog of the [Piattaforma Digitale Nazionale Dati (PDND) - previously DAF](https://pdnd.italia.it/).
+The [italia/public-opendata-sources](https://github.com/italia/public-opendata-sources) repository contains all sources harvested by the national catalog of the [Piattaforma Digitale Nazionale Dati (PDND) - previously DAF](https://pdnd.italia.it/).
 
-If you want to clone it in your environment you must follow some additional steps:
+If you want to import all the official sources provided, simply run CKAN-IT setting the environment variable `CKAN_HARVEST="true"`,
+ie. `docker-compose -f docker-compose.yml -f docker-compose.harvest.yml up -d`.
 
-1. Check if `data/init/harvesters` folder exists, if not add it running `git submodule add https://github.com/italia/ckan-it-harvesters data/init/harvesters`
-2. Add `CKAN_HARVEST="true"` environment variable to the ckan service in `docker-compose.yml` (ie. see `docker-compose.harvest.yml`)
-3. Run containers: `docker-compose up -d`
-3. Wait for organizations and harvest sources loading, then run `docker exec -it italia-ckan-it /ckan-harvest.sh`
-4. Follow previous section to setup a periodic harvesting
+If you want to include them (and others of your choice) in built images (ie. for testing purpose), follow these additional steps:
+
+1. Check if `data/init/harvesters` folder exists and fill them with the content of `https://github.com/italia/public-opendata-sources` (or whatever you want, but be sure that folders and json schemas are the same)
+2. Build images: `docker-compose -f docker-compose.yml -f docker-compose.build.yml build`
+3. Add `CKAN_HARVEST="true"` environment variable to the ckan service in `docker-compose.yml` (ie. see `docker-compose.harvest.yml`)
+4. Run all containers using built images: `docker-compose -f docker-compose.yml -f docker-compose.build.yml up -d` (if you want to check logs run `docker-compose logs -f`)
+5. Wait for organizations and harvest sources loading, then run `docker exec -it italia-ckan-it /ckan-harvest.sh`
+6. Follow previous section to setup a periodic harvesting
+
+### How to export your harvesting sources
+
+Read more [here](https://github.com/italia/public-opendata-sources#how-to-export-your-resources).
 
 ## Environment variables
 
