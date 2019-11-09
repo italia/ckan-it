@@ -3,7 +3,7 @@ version: '2'
 services:
 
   ckan:
-    image: italia/ckan-it:2.6.8-2
+    image: italia/ckan-it:2.8.2-1
     container_name: italia-ckan-it
     environment:
       CKAN_DEBUG: "false"
@@ -34,7 +34,7 @@ services:
       - ckanlog:/var/log/ckan
 
   solr:
-    image: italia/ckan-it-solr:2.3.0-1
+    image: italia/ckan-it-solr:2.8-1
     container_name: italia-ckan-it-solr
     stdin_open: true
     tty: true
@@ -48,7 +48,7 @@ services:
     tty: true
 
   db:
-    image: ckan/postgresql:latest
+    image: mdillon/postgis:11
     container_name: italia-ckan-it-db
     environment:
       POSTGRES_USER: ckan

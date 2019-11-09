@@ -79,13 +79,6 @@ RUN pip install -r "${CKAN_HOME}/src/ckan/requirements.txt"
 # Install CKAN
 RUN pip install -e "${CKAN_HOME}/src/ckan" #egg=ckan
 
-# Install ckanext-harvest
-RUN mkdir "${CKAN_HOME}/src/ckanext-harvest/"
-ADD ./ckanext-harvest/ ${CKAN_HOME}/src/ckanext-harvest/
-RUN pip install -e "${CKAN_HOME}/src/ckanext-harvest/"
-RUN pip install -r "${CKAN_HOME}/src/ckanext-harvest/pip-requirements.txt"
-RUN pip install -r "${CKAN_HOME}/src/ckanext-harvest/dev-requirements.txt"
-
 # Install ckanext-dcat
 RUN mkdir "${CKAN_HOME}/src/ckanext-dcat/"
 ADD ./ckanext-dcat/ ${CKAN_HOME}/src/ckanext-dcat/
@@ -98,16 +91,23 @@ ADD ./ckanext-dcatapit/ ${CKAN_HOME}/src/ckanext-dcatapit/
 RUN pip install -e "${CKAN_HOME}/src/ckanext-dcatapit/"
 RUN pip install -r "${CKAN_HOME}/src/ckanext-dcatapit/dev-requirements.txt"
 
+# Install ckanext-multilang
+RUN mkdir "${CKAN_HOME}/src/ckanext-multilang/"
+ADD ./ckanext-multilang/ ${CKAN_HOME}/src/ckanext-multilang/
+RUN pip install -e "${CKAN_HOME}/src/ckanext-multilang/"
+
 # Install ckanext-spatial
 RUN mkdir "${CKAN_HOME}/src/ckanext-spatial/"
 ADD ./ckanext-spatial/ ${CKAN_HOME}/src/ckanext-spatial/
 RUN pip install -e "${CKAN_HOME}/src/ckanext-spatial/"
 RUN pip install -r "${CKAN_HOME}/src/ckanext-spatial/pip-requirements.txt"
 
-# Install ckanext-multilang
-RUN mkdir "${CKAN_HOME}/src/ckanext-multilang/"
-ADD ./ckanext-multilang/ ${CKAN_HOME}/src/ckanext-multilang/
-RUN pip install -e "${CKAN_HOME}/src/ckanext-multilang/"
+# Install ckanext-harvest
+RUN mkdir "${CKAN_HOME}/src/ckanext-harvest/"
+ADD ./ckanext-harvest/ ${CKAN_HOME}/src/ckanext-harvest/
+RUN pip install -e "${CKAN_HOME}/src/ckanext-harvest/"
+RUN pip install -r "${CKAN_HOME}/src/ckanext-harvest/pip-requirements.txt"
+RUN pip install -r "${CKAN_HOME}/src/ckanext-harvest/dev-requirements.txt"
 
 # DCATAPIT theme to group mapping file
 ADD ./data/config/theme_to_group.ini ${CKAN_CONFIG}
