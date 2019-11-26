@@ -1,12 +1,19 @@
 # CKAN-IT - The Italian distribution
 
+[![Data and open data on forum.italia.it](https://img.shields.io/badge/Forum-Dati%20e%20open%20data-blue.svg)](https://forum.italia.it/c/dati)
+[![Join the #pdnd-ckan channel](https://img.shields.io/badge/Slack%20channel-%23pdnd--ckan-blue.svg?logo=slack)](https://developersitalia.slack.com/messages/CMX9ZDPK3)
+[![Get invited](https://slack.developers.italia.it/badge.svg)](https://slack.developers.italia.it/)
+
+
 [![Join the #pdnd-ckan channel](https://img.shields.io/badge/Slack%20channel-%23pdnd--ckan-blue.svg?logo=slack)](https://developersitalia.slack.com/messages/CMX9ZDPK3)
 [![Get invited](https://slack.developers.italia.it/badge.svg)](https://slack.developers.italia.it/)
 [![PDND/DAF on forum.italia.it](https://img.shields.io/badge/Forum-PDND-blue.svg)](https://forum.italia.it/c/daf)
 
-[CKAN](https://ckan.org/) is a powerful data management system that makes data accessible – by providing tools to streamline publishing, sharing, finding and using data.
+[CKAN](https://ckan.org/) is a powerful data management system that makes data accessible – by providing tools to streamline publishing, sharing, finding and using data. This project provides everything you need to run CKAN plus a set of extensions for supporting Italian open data in a set of Docker images.
 
-This project provides everything you need to run CKAN plus a set of extensions for supporting Italian open data in a set of Docker images.
+Any Italian public institution that wants to publish its data in an open format should follow these guidelines: ["Linee Guida Nazionali per la Valorizzazione del Patrimonio Informativo Pubblico"](https://www.dati.gov.it/sites/default/files/LG2016_0.pdf). Technical details and best practices for data catalogues development and management are contained in these guidelines: ["Linee guida per i cataloghi dati"](https://docs.italia.it/italia/daf/linee-guida-cataloghi-dati-dcat-ap-it/it/stabile/). Open data published by Italian public institutions should be compliant to the [national metadata profile called DCAT-AP_IT](https://www.dati.gov.it/content/dcat-ap-it-v10-profilo-italiano-dcat-ap-0).
+
+CKAN-IT is the Italian official CKAN distribution [packaged with plugins and external components that ensure the compliance with DCAT_AP-IT](#ckan-268-extensions-reference) and all the official guidelines mentioned above. Docker technology facilitates installation and deploy in production-ready environments. All third-party repository containing source code of components and plugins are mirrored under /italia Github organization, but maintained by original maintainer and community (ie. CKAN core, solr, postgresql, redis, and ckanext-harvest and -dcat). Only three plugins are directly developed and maintained within CKAN-IT project: ckanext-spatial (fork of the [official one](https://github.com/ckan/ckanext-spatial)), -multilang, and -dcatapit. Read below for more details.
 
 ## Tools references
 
@@ -17,13 +24,24 @@ The tools used in this repository are
 
 ## Main components
 
-* **CKAN** version 2.6.8 with the extensions listed at the end of this document.
+* **CKAN** version 2.6.8 with the extensions listed at the end of this document (see [italia/ckan](https://github.com/italia/ckan)).
 
 * **Solr** version 6.2 packaged for CKAN and with some customizations (see [italia/ckan-it-solr](https://github.com/italia/ckan-it-solr)).
 
 * **PostgreSQL** version 10.1, modified for CKAN (see https://hub.docker.com/r/ckan/postgresql/tags, tag *latest*).
 
 * **Redis** version 5.0.5, pulled in as a dependency from its [official Docker repository](https://hub.docker.com/_/redis).
+
+## Plugins references
+
+Maintained plugins:
+* [spatial](https://github.com/italia/ckanext-spatial/)
+* [multilang](https://github.com/italia/ckanext-multilang/)
+* [dcatapit](https://github.com/italia/ckanext-dcatapit/)
+
+Official third-party plugins:
+* [harvest](https://github.com/italia/ckanext-harvest/)
+* [dcat](https://github.com/italia/ckanext-dcat/)
 
 ## How to run CKAN-IT
 
@@ -66,6 +84,10 @@ If you want to build local images instead of pull them from Dockerhub, ie. for t
 4. Initialize submodules: `git submodule update --init --recursive`
 5. Build images: `docker-compose -f docker-compose.yml -f docker-compose.build.yml build`
 6. Run all containers using built images: `docker-compose -f docker-compose.yml -f docker-compose.build.yml up -d` (if you want to check logs run `docker-compose logs -f`)
+
+### A notice about CKAN customization
+
+This project brings together many components and plugins in a set of Docker images to facilitates installation and deploy. If you already have a running instance of CKAN or if you want to build a custom distribution from scratch you can install and use [single plugins](#plugins-references) following the [official documentation](https://docs.ckan.org/en/2.6/).
 
 ## CKAN-IT harvesting (optional)
 
@@ -166,11 +188,11 @@ The following environment variables are mandatory and should be set in order to 
   - [spatial](https://github.com/italia/ckanext-spatial/) (tag 2.6.8-2)
     - spatial_metadata
     - spatial_query
-  - [harvest](https://github.com/ckan/ckanext-harvest/) (tag v1.1.1)
+  - [harvest](https://github.com/italia/ckanext-harvest/) (tag v1.1.1)
     - ckan_harvester
   - [multilang](https://github.com/italia/ckanext-multilang/) (tag 2.6.8-2)
     - multilang_harvester
-  - [dcat](https://github.com/ckan/ckanext-dcat/) (tag v0.0.9)
+  - [dcat](https://github.com/italia/ckanext-dcat/) (tag v0.0.9)
     - dcat_rdf_harvester
     - dcat_json_harvester
     - dcat_json_interface
