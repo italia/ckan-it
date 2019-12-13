@@ -43,6 +43,7 @@ write_config () {
                                                 "ckanext.dcat.clean_tags = True" \
                                                 "ckanext.dcatapit.theme_group_mapping.file = ${CKAN_CONFIG}/theme_to_group.ini" \
                                                 "ckanext.dcatapit.nonconformant_themes_mapping.file = ${CKAN_CONFIG}/topics.json" \
+                                                "ckanext.spatial.search_backend = solr-spatial-field" \
                                                 "geonames.username = demo" \
                                                 "geonames.limits.countries = IT" \
                                                 "ckan.site_id = dcatapit_docker_default" \
