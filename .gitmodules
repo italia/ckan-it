@@ -7,9 +7,6 @@
 [submodule "ckanext-harvest"]
 	path = ckanext-harvest
 	url = https://github.com/italia/ckanext-harvest.git
-[submodule "ckanext-spatial"]
-	path = ckanext-spatial
-	url = https://github.com/italia/ckanext-spatial.git
 [submodule "ckanext-multilang"]
 	path = ckanext-multilang
 	url = https://github.com/italia/ckanext-multilang.git
@@ -25,3 +22,9 @@
 [submodule "ckan"]
 	path = ckan
 	url = https://github.com/italia/ckan.git
+[submodule "ckanext-spatial"]
+	path = ckanext-spatial
+	url = https://github.com/ckan/ckanext-spatial.git
+[submodule "postgresql"]
+	path = postgresql
+	url = https://github.com/italia/ckan-it-postgis.git

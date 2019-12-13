@@ -5,9 +5,19 @@ services:
   ckan:
     build:
       context: ./
-    image: ckan-it:2.8.2-dev
+    image: ckan-it:2.8.3-dev
+    container_name: italia-ckan-it-dev
 
   solr:
     build:
       context: ./solr
     image: ckan-it-solr:2.8-dev
+    container_name: italia-ckan-it-solr-dev
+  
+  redis:
+    container_name: italia-ckan-it-redis-dev
+
+  db:
+    build:
+      context: ./postgresql
+    container_name: italia-ckan-it-db-dev

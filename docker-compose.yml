@@ -3,7 +3,7 @@ version: '2'
 services:
 
   ckan:
-    image: italia/ckan-it:2.8.2-1
+    image: italia/ckan-it:2.8.3-1
     container_name: italia-ckan-it
     environment:
       CKAN_DEBUG: "false"
@@ -32,6 +32,7 @@ services:
       - solr
     volumes:
       - ckanlog:/var/log/ckan
+      - ckanstorage:/var/lib/ckan/storage
 
   solr:
     image: italia/ckan-it-solr:2.8-1
@@ -66,3 +67,4 @@ volumes:
   pgsqldb:
   solrdb:
   ckanlog:
+  ckanstorage:
