@@ -122,6 +122,8 @@ The following environment variables are mandatory and should be set in order to 
 
 * CKAN_ADMIN_PASSWORD - The password of the local admin user.
 
+* CKAN_PLUGINS - Additional CKAN extensions to include.
+
 ### Database variables
 
 * CKAN_DB_HOST - The host name of the CKAN PostgreSQL database.
