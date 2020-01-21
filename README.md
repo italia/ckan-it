@@ -122,7 +122,13 @@ The following environment variables are mandatory and should be set in order to 
 
 * CKAN_ADMIN_PASSWORD - The password of the local admin user.
 
-* CKAN_PLUGINS - Additional CKAN extensions to include.
+* CKAN_PLUGINS_BEFORE - Additional CKAN extensions to include in first positions
+
+* CKAN_PLUGINS_AFTER - Additional CKAN extensions to include in latest positions
+
+* CKAN_CREATE_USER *(format: {"true"|"false"})* - Whether to enable or not the user creation via API or web interface
+
+* CKAN_OPTIONS - Additional CKAN options, one per line
 
 ### Database variables
 

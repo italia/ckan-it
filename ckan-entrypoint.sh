@@ -37,6 +37,8 @@ write_config () {
                                                 "sqlalchemy.url = ${CKAN_SQLALCHEMY_URL}" \
                                                 "ckan.site_url = ${CKAN_SITE_URL}" \
                                                 "ckan.auth.user_create_organizations = true" \
+                                                "ckan.auth.create_user_via_web = ${CKAN_CREATE_USER:=true}" \
+                                                "ckan.auth.create_user_via_api = ${CKAN_CREATE_USER:=false}" \
                                                 "ckanext.dcat.rdf.profiles = euro_dcat_ap it_dcat_ap" \
                                                 "ckanext.dcat.base_uri = ${CKAN_DCAT_BASE_URI}" \
                                                 "ckanext.dcat.expose_subcatalogs = True" \
@@ -50,12 +52,13 @@ write_config () {
                                                 "solr_url=${CKAN_SOLR_URL}" \
                                                 "ckan.redis.url = ${CKAN_REDIS_URL}" \
                                                 "ckan.cors.origin_allow_all = true" \
-                                                "ckan.plugins = stats text_view image_view recline_view spatial_metadata spatial_query harvest ckan_harvester multilang multilang_harvester dcat dcat_rdf_harvester dcat_json_harvester dcat_json_interface dcatapit_pkg dcatapit_org dcatapit_config dcatapit_harvester dcatapit_ckan_harvester dcatapit_csw_harvester dcatapit_harvest_list dcatapit_subcatalog_facets dcatapit_theme_group_mapper ${CKAN_PLUGINS}" \
+                                                "ckan.plugins = ${CKAN_PLUGINS_BEFORE//[$'\t\r\n']} stats text_view image_view recline_view spatial_metadata spatial_query harvest ckan_harvester multilang multilang_harvester dcat dcat_rdf_harvester dcat_json_harvester dcat_json_interface dcatapit_pkg dcatapit_org dcatapit_config dcatapit_harvester dcatapit_ckan_harvester dcatapit_csw_harvester dcatapit_harvest_list dcatapit_subcatalog_facets dcatapit_theme_group_mapper ${CKAN_PLUGINS_AFTER//[$'\t\r\n']}" \
                                                 "ckan.spatial.srid = 4326" \
                                                 "ckan.locale_default = it" \
                                                 "ckan.locale_order = it de fr en pt_BR ja cs_CZ ca es el sv sr sr@latin no sk fi ru pl nl bg ko_KR hu sa sl lv" \
                                                 "ckan.locales_offered = it de fr en" \
-                                                "ckan.locales_filtered_out = it_IT"
+                                                "ckan.locales_filtered_out = it_IT" \
+                                                "${CKAN_OPTIONS}"
 
   # Edit handlers section
   paster --plugin=ckan config-tool ${config} -s "handlers" \
