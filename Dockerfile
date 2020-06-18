@@ -23,14 +23,14 @@ RUN yum -y install wget
 
 RUN yum -y groupinstall "Development Tools"
 
-RUN wget http://download.redis.io/redis-stable.tar.gz \
-    && tar xvzf redis-stable.tar.gz \
-    && pushd redis-stable \
+RUN wget https://github.com/antirez/redis/archive/5.0.9.tar.gz \
+    && tar xvzf 5.0.9.tar.gz \
+    && pushd redis-5.0.9 \
     && make \
     && cp src/redis-cli /usr/local/bin/ \
     && chmod 755 /usr/local/bin/redis-cli \
     && popd \
-    && rm -rf ./redis-stable*
+    && rm -rf ./redis-5.0.9*
 
 # Upgrade python pip
 RUN pip install --upgrade pip
