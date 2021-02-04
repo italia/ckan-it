@@ -23,17 +23,17 @@ RUN yum -y install wget
 
 RUN yum -y groupinstall "Development Tools"
 
-RUN wget http://download.redis.io/redis-stable.tar.gz \
-    && tar xvzf redis-stable.tar.gz \
-    && pushd redis-stable \
+RUN wget http://download.redis.io/releases/redis-5.0.5.tar.gz \
+    && tar xvzf redis-5.0.5.tar.gz \
+    && pushd redis-5.0.5 \
     && make \
     && cp src/redis-cli /usr/local/bin/ \
     && chmod 755 /usr/local/bin/redis-cli \
     && popd \
-    && rm -rf ./redis-stable*
+    && rm -rf ./redis-5.0.5*
 
 # Upgrade python pip
-RUN pip install --upgrade pip
+RUN pip install --upgrade pip==20.3.3
 
 # Setup ckan Directory
 RUN mkdir -p "${CKAN_HOME}"
